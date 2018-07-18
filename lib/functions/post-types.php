@@ -7,31 +7,31 @@
  * @package      Core_Functionality
  * @since        1.0.0
  * @link         https://github.com/billerickson/Core-Functionality
- * @author       Bill Erickson <bill@billerickson.net>
- * @copyright    Copyright (c) 2011, Bill Erickson
+ * @author       Jason Chafin <jchafin@ucsc.edu>
+ * @copyright    Copyright (c) 2018, Jason Chafin
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
 
 /**
- * Create Rotator post type
+ * Create Slider post type
  * @since 1.0.0
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  */
 
-function be_register_rotator_post_type() {
+function ucsc_register_slider_post_type() {
 	$labels = array(
-		'name' => 'Rotator Items',
-		'singular_name' => 'Rotator Item',
+		'name' => 'Slider Items',
+		'singular_name' => 'Slider Item',
 		'add_new' => 'Add New',
-		'add_new_item' => 'Add New Rotator Item',
-		'edit_item' => 'Edit Rotator Item',
-		'new_item' => 'New Rotator Item',
-		'view_item' => 'View Rotator Item',
-		'search_items' => 'Search Rotator Items',
-		'not_found' =>  'No rotator items found',
-		'not_found_in_trash' => 'No rotator items found in trash',
+		'add_new_item' => 'Add New Slider Item',
+		'edit_item' => 'Edit Slider Item',
+		'new_item' => 'New Slider Item',
+		'view_item' => 'View Slider Item',
+		'search_items' => 'Search Slider Items',
+		'not_found' =>  'No slider items found',
+		'not_found_in_trash' => 'No slider items found in trash',
 		'parent_item_colon' => '',
-		'menu_name' => 'Rotator'
+		'menu_name' => 'Slider'
 	);
 	
 	$args = array(
@@ -46,9 +46,10 @@ function be_register_rotator_post_type() {
 		'has_archive' => false, 
 		'hierarchical' => false,
 		'menu_position' => null,
+		'menu_icon' => 'dashicons-images-alt2',
 		'supports' => array('title','thumbnail','excerpt')
 	); 
 
-	register_post_type( 'rotator', $args );
+	register_post_type( 'slider', $args );
 }
-add_action( 'init', 'be_register_rotator_post_type' );	
+add_action( 'init', 'ucsc_register_slider_post_type' );	
