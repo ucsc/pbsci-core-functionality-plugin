@@ -47,7 +47,7 @@ function ucsc_register_slider_post_type() {
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-images-alt2',
-		'supports' => array('title','thumbnail','excerpt')
+		'supports' => array('title','thumbnail')
 	); 
 
 	register_post_type( 'slider', $args );

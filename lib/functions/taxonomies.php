@@ -14,34 +14,34 @@
 
 
 /**
- * Create Location Taxonomy
+ * Create Slider Location Taxonomy
  * @since 1.0.0
  * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
  */
 
-function be_register_location_taxonomy() {
+function ucsc_underscore_register_location_taxonomy() {
 	$labels = array(
-		'name' => 'Locations',
-		'singular_name' => 'Location',
-		'search_items' =>  'Search Locations',
-		'all_items' => 'All Locations',
-		'parent_item' => 'Parent Location',
-		'parent_item_colon' => 'Parent Location:',
-		'edit_item' => 'Edit Location',
-		'update_item' => 'Update Location',
-		'add_new_item' => 'Add New Location',
-		'new_item_name' => 'New Location Name',
-		'menu_name' => 'Location'
+		'name' => 'Slider Locations',
+		'singular_name' => 'Slider Location',
+		'search_items' =>  'Search Slider Locations',
+		'all_items' => 'All Slider Locations',
+		'parent_item' => 'Parent Slider Location',
+		'parent_item_colon' => 'Parent Slider Location:',
+		'edit_item' => 'Edit Slider Location',
+		'update_item' => 'Update Slider Location',
+		'add_new_item' => 'Add New Slider Location',
+		'new_item_name' => 'New Slider Location Name',
+		'menu_name' => 'Slider Location'
 	); 	
 
-	register_taxonomy( 'rotator-location', array('rotator'), 
+	register_taxonomy( 'slider-location', array('slider'), 
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array( 'slug' => 'rotator-location' ),
+			'rewrite' => array( 'slug' => 'slider-location' ),
 		)
 	);
 }
-add_action( 'init', 'be_register_location_taxonomy' );
+add_action( 'init', 'ucsc_underscore_register_location_taxonomy' );

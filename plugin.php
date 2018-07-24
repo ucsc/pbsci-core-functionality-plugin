@@ -26,17 +26,20 @@ define( 'BB_DIR', dirname( __FILE__ ) );
 require_once( BB_DIR . '/lib/functions/post-types.php' );
 
 // Taxonomies 
-//require_once( BB_DIR . '/lib/functions/taxonomies.php' );
+require_once( BB_DIR . '/lib/functions/taxonomies.php' );
 
 // Metaboxes 
 require_once( BB_DIR . '/lib/functions/metaboxes.php' );
 require_once( BB_DIR . '/lib/functions/example-metaboxes.php' );
 
 // Shortcodes
-//require_once( BB_DIR . '/lib/widgets/shortcodes.php' );
+//require_once( BB_DIR . '/lib/functions/shortcodes.php' );
 
 // Sidebars
-//require_once( BB_DIR . '/lib/widgets/sidebars.php' );
+//require_once( BB_DIR . '/lib/functions/sidebars.php' );
+
+// Widgets
+require_once( BB_DIR . '/lib/functions/widgets.php' );
 
 // General
 require_once( BB_DIR . '/lib/functions/general.php' );
