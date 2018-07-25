@@ -6,7 +6,7 @@
  * http://nacin.com/2010/05/11/in-wordpress-prefix-everything/
  *
  * @category PBSciCoreFunctionality
- * @package  Demo_CMB2
+ * @package  CMB2
  * @license  http://www.opensource.org/licenses/gpl-license.php GPL v2.0 (or later)
  * @link     https://github.com/CMB2/CMB2
  */
@@ -85,10 +85,10 @@ function ucsc_underscore_slider_metaboxes() {
 		'type' => 'radio_inline',
 		'show_option_none' => 'No Selection',
 		'options'          => array(
-			'left' => esc_html__( 'left', 'cmb2' ),
-			'right'   => esc_html__( 'right', 'cmb2' ),
-			'top'     => esc_html__( 'top', 'cmb2' ),
-			'bottom'     => esc_html__( 'bottom', 'cmb2' ),
+			'left' => esc_html__( 'Left', 'cmb2' ),
+			'right'   => esc_html__( 'Right', 'cmb2' ),
+			'top'     => esc_html__( 'Top', 'cmb2' ),
+			'bottom'     => esc_html__( 'Bottom', 'cmb2' ),
 		),
 		// 'protocols' => array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet'), // Array of allowed protocols
 		// 'repeatable' => true,
@@ -102,12 +102,12 @@ function ucsc_underscore_slider_metaboxes() {
 		'type' => 'radio_inline',
 		'show_option_none' => 'No Selection',
 		'options'          => array(
-			'blue' => esc_html__( 'blue', 'cmb2' ),
-			'gold'   => esc_html__( 'gold', 'cmb2' ),
-			'green'     => esc_html__( 'green', 'cmb2' ),
-			'light-blue'     => esc_html__( 'light-blue', 'cmb2' ),
-			'lime'     => esc_html__( 'lime', 'cmb2' ),
-			'pink'     => esc_html__( 'pink', 'cmb2' ),
+			'blue' => esc_html__( 'Blue', 'cmb2' ),
+			'gold'   => esc_html__( 'Gold', 'cmb2' ),
+			'green'     => esc_html__( 'Green', 'cmb2' ),
+			'light-blue'     => esc_html__( 'Light Blue', 'cmb2' ),
+			'lime'     => esc_html__( 'Lime', 'cmb2' ),
+			'pink'     => esc_html__( 'Pink', 'cmb2' ),
 		),
 		// 'protocols' => array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet'), // Array of allowed protocols
 		// 'repeatable' => true,
