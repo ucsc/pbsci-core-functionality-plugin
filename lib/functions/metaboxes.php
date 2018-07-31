@@ -21,9 +21,6 @@ if ( file_exists( dirname( __FILE__ ) . '/cmb2/init.php' ) ) {
 	require_once dirname( __FILE__ ) . '/CMB2/init.php';
 }
 
-/**
- * Slider Metabox
- */
 add_action( 'cmb2_admin_init', 'ucsc_underscore_slider_metaboxes' );
 /**
  * Define the metabox and field configurations.
