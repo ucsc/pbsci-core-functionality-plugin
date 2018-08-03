@@ -236,19 +236,19 @@ function ucsc_underscore_register_theme_options_metabox() {
 	) );
 
 	// Radio Inline: Slide animation
-	$cmb_options->add_field( array(
-		'name' => esc_html__( 'Slide animation', 'cmb2' ),
-		'desc' => esc_html__( 'Select the type of animation for the slides', 'cmb2' ),
-		'id'   => 'slide_animate',
-		'type' => 'radio_inline',
+	// $cmb_options->add_field( array(
+		// 'name' => esc_html__( 'Slide animation', 'cmb2' ),
+		// 'desc' => esc_html__( 'Select the type of animation for the slides', 'cmb2' ),
+		// 'id'   => 'slide_animate',
+		// 'type' => 'radio_inline',
 		// 'show_option_none' => 'No Selection',
-		'options'          => array(
-			'fade' => esc_html__( 'Fade', 'cmb2' ),
-			'slide'   => esc_html__( 'Slide', 'cmb2' ),
-		),
+		// 'options'          => array(
+			// 'fade' => esc_html__( 'Fade', 'cmb2' ),
+			// 'slide'   => esc_html__( 'Slide', 'cmb2' ),
+		// ),
 		// 'protocols' => array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet'), // Array of allowed protocols
 		// 'repeatable' => true,
-	) );
+	// ) );
 
 
 }
