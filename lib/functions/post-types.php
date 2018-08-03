@@ -47,6 +47,9 @@ function ucsc_register_slider_post_type() {
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-images-alt2',
+		'show_in_rest'       => true,
+  		'rest_base'          => 'slides-api',
+  		'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'supports' => array('title','thumbnail')
 	); 
 
@@ -55,7 +58,7 @@ function ucsc_register_slider_post_type() {
 add_action( 'init', 'ucsc_register_slider_post_type' );	
 
 /**
- * Register Department Post Type
+ * Register Departments Post Type
  */
 
 function ucsc_register_department_post_type() {
@@ -96,3 +99,89 @@ function ucsc_register_department_post_type() {
 	register_post_type( 'department', $args );
 }
 add_action( 'init', 'ucsc_register_department_post_type' );
+
+/**
+ * Register Majors Post Type
+ */
+
+function ucsc_register_major_post_type() {
+	$labels = array(
+		'name' => 'Majors',
+		'singular_name' => 'Major',
+		'add_new' => 'Add New Major',
+		'add_new_item' => 'Add New Major',
+		'edit_item' => 'Edit Major',
+		'new_item' => 'New Major',
+		'view_item' => 'View Major',
+		'search_items' => 'Search Majors',
+		'not_found' =>  'No Majors found',
+		'not_found_in_trash' => 'No Majors found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Majors'
+	);
+	
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true, 
+		'show_in_menu' => true, 
+		'query_var' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'has_archive' => false, 
+		'hierarchical' => false,
+		'menu_position' => null,
+		'menu_icon' => 'dashicons-awards',
+		'show_in_rest'       => true,
+  		'rest_base'          => 'majors-api',
+  		'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title','thumbnail','editor')
+	); 
+
+	register_post_type( 'major', $args );
+}
+add_action( 'init', 'ucsc_register_major_post_type' );
+
+/**
+ * Register Programs Post Type
+ */
+
+function ucsc_register_program_post_type() {
+	$labels = array(
+		'name' => 'Programs',
+		'singular_name' => 'Program',
+		'add_new' => 'Add New Program',
+		'add_new_item' => 'Add New Program',
+		'edit_item' => 'Edit Program',
+		'new_item' => 'New Program',
+		'view_item' => 'View Program',
+		'search_items' => 'Search Programs',
+		'not_found' =>  'No Programs found',
+		'not_found_in_trash' => 'No Programs found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Programs'
+	);
+	
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true, 
+		'show_in_menu' => true, 
+		'query_var' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'has_archive' => false, 
+		'hierarchical' => false,
+		'menu_position' => null,
+		'menu_icon' => 'dashicons-book',
+		'show_in_rest'       => true,
+  		'rest_base'          => 'programs-api',
+  		'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title','thumbnail','editor')
+	); 
+
+	register_post_type( 'program', $args );
+}
+add_action( 'init', 'ucsc_register_program_post_type' );
