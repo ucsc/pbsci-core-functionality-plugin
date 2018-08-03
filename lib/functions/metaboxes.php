@@ -114,3 +114,141 @@ function ucsc_underscore_slider_metaboxes() {
 	// Add other metaboxes as needed
 
 }
+
+add_action( 'cmb2_admin_init', 'ucsc_underscore_department_metaboxes' );
+/**
+ * Define the metabox and field configurations.
+ */
+function ucsc_underscore_department_metaboxes() {
+
+	// Start with an underscore to hide fields from custom fields list
+	$prefix = '_ucsc_';
+
+	/**
+	 * Initiate the metabox
+	 */
+	$cmb = new_cmb2_box( array(
+		'id'            => 'department_metabox',
+		'title'         => __( 'Department Metabox', 'cmb2' ),
+		'object_types'  => array( 'department', ), // Post type
+		'context'       => 'normal',
+		'priority'      => 'core',
+		'show_names'    => true, // Show field names on the left
+		// 'cmb_styles' => false, // false to disable the CMB stylesheet
+		// 'closed'     => true, // Keep the metabox closed by default
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Department Location', 'cmb2' ),
+		'desc' => esc_html__( 'Enter the campus location of this department', 'cmb2' ),
+		'id'   => $prefix . 'textmedium',
+		'type' => 'text_medium',
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Department Phone Number', 'cmb2' ),
+		'desc' => esc_html__( 'Enter the phone number of this department', 'cmb2' ),
+		'id'   => $prefix . 'department_phone',
+		'type' => 'number',
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Department Website', 'cmb2' ),
+		'desc' => esc_html__( 'Enter the Department website url', 'cmb2' ),
+		'id'   => $prefix . 'url',
+		'type' => 'text_url',
+		// 'protocols' => array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet'), // Array of allowed protocols
+		// 'repeatable' => true,
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Department Address', 'cmb2' ),
+		'desc' => esc_html__( 'Enter the address of this department', 'cmb2' ),
+		'id'   => $prefix . 'department_address',
+		'type' => 'address',
+	) );
+
+}
+
+add_action( 'cmb2_admin_init', 'ucsc_underscore_register_theme_options_metabox' );
+/**
+ * Hook in and register a metabox to handle a theme options page and adds a menu item.
+ */
+function ucsc_underscore_register_theme_options_metabox() {
+
+	/**
+	 * Registers options page menu item and form.
+	 */
+	$cmb_options = new_cmb2_box( array(
+		'id'           => 'ucsc_underscore_theme_options_page',
+		'title'        => esc_html__( 'Theme Options', 'cmb2' ),
+		'object_types' => array( 'options-page' ),
+
+		/*
+		 * The following parameters are specific to the options-page box
+		 * Several of these parameters are passed along to add_menu_page()/add_submenu_page().
+		 */
+
+		'option_key'      => 'ucsc_underscore_theme_options', // The option key and admin menu page slug.
+		'icon_url'        => 'dashicons-palmtree', // Menu icon. Only applicable if 'parent_slug' is left empty.
+		// 'menu_title'      => esc_html__( 'Options', 'cmb2' ), // Falls back to 'title' (above).
+		// 'parent_slug'     => 'themes.php', // Make options page a submenu item of the themes menu.
+		// 'capability'      => 'manage_options', // Cap required to view options-page.
+		// 'position'        => 1, // Menu position. Only applicable if 'parent_slug' is left empty.
+		// 'admin_menu_hook' => 'network_admin_menu', // 'network_admin_menu' to add network-level options page.
+		// 'display_cb'      => false, // Override the options-page form output (CMB2_Hookup::options_page_output()).
+		// 'save_button'     => esc_html__( 'Save Theme Options', 'cmb2' ), // The text for the options-page save button. Defaults to 'Save'.
+		// 'disable_settings_errors' => true, // On settings pages (not options-general.php sub-pages), allows disabling.
+		// 'message_cb'      => 'yourprefix_options_page_message_callback',
+		// 'tab_group'       => '', // Tab-group identifier, enables options page tab navigation.
+		// 'tab_title'       => null, // Falls back to 'title' (above).
+		// 'autoload'        => false, // Defaults to true, the options-page option will be autloaded.
+	) );
+
+	/**
+	 * Options fields ids only need
+	 * to be unique within this box.
+	 * Prefix is not needed.
+	 */
+
+	// Radio Inline: Number of Slides
+	$cmb_options->add_field( array(
+		'name' => esc_html__( 'Number of slides in Home slider', 'cmb2' ),
+		'desc' => esc_html__( 'Select the number of slides you want on the home page', 'cmb2' ),
+		'id'   => 'slide_count',
+		'type' => 'radio_inline',
+		'before_row' => '<h2 style="font-weight:bold">Slider Options</h2>',
+		// 'show_option_none' => 'No Selection',
+		'options'          => array(
+			'one' => esc_html__( 'One', 'cmb2' ),
+			'two'   => esc_html__( 'Two', 'cmb2' ),
+			'three'     => esc_html__( 'Three', 'cmb2' ),
+			'four'     => esc_html__( 'Four', 'cmb2' ),
+			'five'     => esc_html__( 'Five', 'cmb2' ),
+			'six'     => esc_html__( 'Six', 'cmb2' ),
+			'seven'     => esc_html__( 'Seven', 'cmb2' ),
+			'eight'     => esc_html__( 'Eight', 'cmb2' ),
+			'nine'     => esc_html__( 'Nine', 'cmb2' ),
+			'ten'     => esc_html__( 'Ten', 'cmb2' ),
+		),
+		// 'protocols' => array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet'), // Array of allowed protocols
+		// 'repeatable' => true,
+	) );
+
+	// Radio Inline: Slide animation
+	$cmb_options->add_field( array(
+		'name' => esc_html__( 'Slide animation', 'cmb2' ),
+		'desc' => esc_html__( 'Select the type of animation for the slides', 'cmb2' ),
+		'id'   => 'slide_animate',
+		'type' => 'radio_inline',
+		// 'show_option_none' => 'No Selection',
+		'options'          => array(
+			'fade' => esc_html__( 'Fade', 'cmb2' ),
+			'slide'   => esc_html__( 'Slide', 'cmb2' ),
+		),
+		// 'protocols' => array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet'), // Array of allowed protocols
+		// 'repeatable' => true,
+	) );
+
+
+}

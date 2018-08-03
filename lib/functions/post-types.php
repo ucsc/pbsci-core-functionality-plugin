@@ -53,3 +53,46 @@ function ucsc_register_slider_post_type() {
 	register_post_type( 'slider', $args );
 }
 add_action( 'init', 'ucsc_register_slider_post_type' );	
+
+/**
+ * Register Department Post Type
+ */
+
+function ucsc_register_department_post_type() {
+	$labels = array(
+		'name' => 'Departments',
+		'singular_name' => 'Department',
+		'add_new' => 'Add New Department',
+		'add_new_item' => 'Add New Department',
+		'edit_item' => 'Edit Department',
+		'new_item' => 'New Department',
+		'view_item' => 'View Department',
+		'search_items' => 'Search Departments',
+		'not_found' =>  'No Departments found',
+		'not_found_in_trash' => 'No Departments found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Departments'
+	);
+	
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true, 
+		'show_in_menu' => true, 
+		'query_var' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'has_archive' => false, 
+		'hierarchical' => false,
+		'menu_position' => null,
+		'menu_icon' => 'dashicons-book-alt',
+		'show_in_rest'       => true,
+  		'rest_base'          => 'departments-api',
+  		'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title','thumbnail','editor')
+	); 
+
+	register_post_type( 'department', $args );
+}
+add_action( 'init', 'ucsc_register_department_post_type' );

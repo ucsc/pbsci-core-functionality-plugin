@@ -31,6 +31,7 @@ require_once( BB_DIR . '/lib/functions/taxonomies.php' );
 // Metaboxes 
 require_once( BB_DIR . '/lib/functions/metaboxes.php' );
 require_once( BB_DIR . '/lib/functions/example-metaboxes.php' );
+require_once( BB_DIR . '/lib/functions/custom-metabox-definitions.php' );
 
 // Shortcodes
 //require_once( BB_DIR . '/lib/functions/shortcodes.php' );
