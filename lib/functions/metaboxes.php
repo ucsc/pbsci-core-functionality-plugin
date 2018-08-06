@@ -212,6 +212,86 @@ function ucsc_slider_metaboxes() {
 
 /**
  * 
+ * DIVISIONS METABOXES
+ * 
+ */
+
+add_action( 'cmb2_admin_init', 'ucsc_division_metaboxes' );
+/**
+ * Define the metabox and field configurations.
+ */
+function ucsc_division_metaboxes() {
+
+	// Start with an underscore to hide fields from custom fields list
+	$prefix = '_ucsc_';
+
+	/**
+	 * Initiate the metabox
+	 */
+	$cmb = new_cmb2_box( array(
+		'id'            => 'division_metabox',
+		'title'         => __( 'Division Metabox', 'cmb2' ),
+		'object_types'  => array( 'division', ), // Post type
+		'context'       => 'normal',
+		'priority'      => 'core',
+		'show_names'    => true, // Show field names on the left
+		// 'cmb_styles' => false, // false to disable the CMB stylesheet
+		// 'closed'     => true, // Keep the metabox closed by default
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Division Location', 'cmb2' ),
+		'desc' => esc_html__( 'Enter the campus location of this division', 'cmb2' ),
+		'id'   => $prefix . 'textmedium',
+		'type' => 'text_medium',
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Division Phone Number', 'cmb2' ),
+		'desc' => esc_html__( 'Enter the phone number of this division (123-456-7890)', 'cmb2' ),
+		'id'   => $prefix . 'division_phone',
+		'type' => 'text_medium',
+		'attributes' => array(
+			'type' => 'number',
+			'pattern' => '\d*',
+		)
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Division Website', 'cmb2' ),
+		'desc' => esc_html__( 'Enter the Division website url', 'cmb2' ),
+		'id'   => $prefix . 'url',
+		'type' => 'text_url',
+		// 'protocols' => array('http', 'https', 'ftp', 'ftps', 'mailto', 'news', 'irc', 'gopher', 'nntp', 'feed', 'telnet'), // Array of allowed protocols
+		// 'repeatable' => true,
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Division Address', 'cmb2' ),
+		'desc' => esc_html__( 'Enter the address of this division', 'cmb2' ),
+		'id'   => $prefix . 'division_address',
+		'type' => 'address',
+	) );
+
+	$cmb->add_field( array(
+		'name'    => __( 'Departments', 'cmb2' ),
+		'desc'    => __( 'Drag posts from the left column to the right column to attach them to this page.<br />You may rearrange the order of the posts in the right column by dragging and dropping.', 'cmb2' ),
+		'id'      => $prefix .'attached_cmb2_attached_departments',
+		'type'    => 'custom_attached_posts',
+		'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
+		'options' => array(
+			'show_thumbnails' => true, // Show thumbnails on the left
+			'filter_boxes'    => true, // Show a text box for filtering the results
+			'query_args'      => array(
+				'posts_per_page' => 10,
+				'post_type'      => 'department',
+			), // override the get_posts args
+		),
+	) );
+}
+
+/**
+ * 
  * DEPARTMENT METABOXES
  * 
  */
@@ -250,7 +330,11 @@ function ucsc_department_metaboxes() {
 		'name' => esc_html__( 'Department Phone Number', 'cmb2' ),
 		'desc' => esc_html__( 'Enter the phone number of this department', 'cmb2' ),
 		'id'   => $prefix . 'department_phone',
-		'type' => 'number',
+		'type' => 'text_medium',
+		'attributes' => array(
+			'type' => 'number',
+			'pattern' => '\d*',
+		)
 	) );
 
 	$cmb->add_field( array(
@@ -269,6 +353,52 @@ function ucsc_department_metaboxes() {
 		'type' => 'address',
 	) );
 
+}
+
+/**
+ * 
+ * PROGRAMS METABOXES
+ * 
+ */
+
+add_action( 'cmb2_admin_init', 'ucsc_program_metaboxes' );
+/**
+ * Define the metabox and field configurations.
+ */
+function ucsc_program_metaboxes() {
+
+	// Start with an underscore to hide fields from custom fields list
+	$prefix = '_ucsc_';
+
+	/**
+	 * Initiate the metabox
+	 */
+	$cmb = new_cmb2_box( array(
+		'id'            => 'program_metabox',
+		'title'         => __( 'Program Metabox', 'cmb2' ),
+		'object_types'  => array( 'program', ), // Post type
+		'context'       => 'normal',
+		'priority'      => 'core',
+		'show_names'    => true, // Show field names on the left
+		// 'cmb_styles' => false, // false to disable the CMB stylesheet
+		// 'closed'     => true, // Keep the metabox closed by default
+	) );
+
+	$cmb->add_field( array(
+		'name'    => __( 'Degrees offered', 'cmb2' ),
+		'desc'    => __( 'Drag posts from the left column to the right column to attach them to this page.<br />You may rearrange the order of the posts in the right column by dragging and dropping.', 'cmb2' ),
+		'id'      => $prefix .'attached_cmb2_attached_majors',
+		'type'    => 'custom_attached_posts',
+		'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
+		'options' => array(
+			'show_thumbnails' => true, // Show thumbnails on the left
+			'filter_boxes'    => true, // Show a text box for filtering the results
+			'query_args'      => array(
+				'posts_per_page' => 10,
+				'post_type'      => 'major',
+			), // override the get_posts args
+		),
+	) );
 }
 
 /**
@@ -300,34 +430,34 @@ function ucsc_major_metaboxes() {
 		// 'closed'     => true, // Keep the metabox closed by default
 	) );
 
-	$cmb->add_field( array(
-		'name' => esc_html__( 'Study and Research Opportunities', 'cmb2' ),
-		'desc' => esc_html__( 'Describe study and research opportunities here', 'cmb2' ),
-		'id'   => $prefix . 'research_wysiwyg',
-		'type' => 'wysiwyg',
-		'options' => array(
-			'textarea_rows' => 5,
-		),
-	) );
+	// $cmb->add_field( array(
+	// 	'name' => esc_html__( 'Study and Research Opportunities', 'cmb2' ),
+	// 	'desc' => esc_html__( 'Describe study and research opportunities here', 'cmb2' ),
+	// 	'id'   => $prefix . 'research_wysiwyg',
+	// 	'type' => 'wysiwyg',
+	// 	'options' => array(
+	// 		'textarea_rows' => 5,
+	// 	),
+	// ) );
 
-	$cmb->add_field( array(
-		'name' => esc_html__( 'Information for First Year Students', 'cmb2' ),
-		'desc' => esc_html__( 'Include information for first year students here', 'cmb2' ),
-		'id'   => $prefix . 'first_year_wysiwyg',
-		'type' => 'wysiwyg',
-		'options' => array(
-			'textarea_rows' => 5,
-		),
-	) );
+	// $cmb->add_field( array(
+	// 	'name' => esc_html__( 'Information for First Year Students', 'cmb2' ),
+	// 	'desc' => esc_html__( 'Include information for first year students here', 'cmb2' ),
+	// 	'id'   => $prefix . 'first_year_wysiwyg',
+	// 	'type' => 'wysiwyg',
+	// 	'options' => array(
+	// 		'textarea_rows' => 5,
+	// 	),
+	// ) );
 
-	$cmb->add_field( array(
-		'name' => esc_html__( 'Information for Transfer Students', 'cmb2' ),
-		'desc' => esc_html__( 'Include information for transfer students here', 'cmb2' ),
-		'id'   => $prefix . 'transfer_wysiwyg',
-		'type' => 'wysiwyg',
-		'options' => array(
-			'textarea_rows' => 5,
-		),
-	) );
+	// $cmb->add_field( array(
+	// 	'name' => esc_html__( 'Information for Transfer Students', 'cmb2' ),
+	// 	'desc' => esc_html__( 'Include information for transfer students here', 'cmb2' ),
+	// 	'id'   => $prefix . 'transfer_wysiwyg',
+	// 	'type' => 'wysiwyg',
+	// 	'options' => array(
+	// 		'textarea_rows' => 5,
+	// 	),
+	// ) );
 
 }

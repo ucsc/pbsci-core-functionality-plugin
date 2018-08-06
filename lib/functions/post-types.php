@@ -58,6 +58,49 @@ function ucsc_register_slider_post_type() {
 add_action( 'init', 'ucsc_register_slider_post_type' );	
 
 /**
+ * Register Divisions Post Type
+ */
+
+function ucsc_register_division_post_type() {
+	$labels = array(
+		'name' => 'Divisions',
+		'singular_name' => 'Division',
+		'add_new' => 'Add New Division',
+		'add_new_item' => 'Add New Division',
+		'edit_item' => 'Edit Division',
+		'new_item' => 'New Division',
+		'view_item' => 'View Division',
+		'search_items' => 'Search Divisions',
+		'not_found' =>  'No Divisions found',
+		'not_found_in_trash' => 'No Divisions found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Divisions'
+	);
+	
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true, 
+		'show_in_menu' => true, 
+		'query_var' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'has_archive' => false, 
+		'hierarchical' => false,
+		'menu_position' => null,
+		'menu_icon' => 'dashicons-book-alt',
+		'show_in_rest'       => true,
+  		'rest_base'          => 'divisions-api',
+  		'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title','thumbnail','editor')
+	); 
+
+	register_post_type( 'division', $args );
+}
+add_action( 'init', 'ucsc_register_division_post_type' );
+
+/**
  * Register Departments Post Type
  */
 
@@ -99,6 +142,49 @@ function ucsc_register_department_post_type() {
 	register_post_type( 'department', $args );
 }
 add_action( 'init', 'ucsc_register_department_post_type' );
+
+/**
+ * Register Programs Post Type
+ */
+
+function ucsc_register_program_post_type() {
+	$labels = array(
+		'name' => 'Programs',
+		'singular_name' => 'Program',
+		'add_new' => 'Add New Program',
+		'add_new_item' => 'Add New Program',
+		'edit_item' => 'Edit Program',
+		'new_item' => 'New Program',
+		'view_item' => 'View Program',
+		'search_items' => 'Search Programs',
+		'not_found' =>  'No Programs found',
+		'not_found_in_trash' => 'No Programs found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Programs'
+	);
+	
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true, 
+		'show_in_menu' => true, 
+		'query_var' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'has_archive' => false, 
+		'hierarchical' => false,
+		'menu_position' => null,
+		'menu_icon' => 'dashicons-book',
+		'show_in_rest'       => true,
+  		'rest_base'          => 'programs-api',
+  		'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title','thumbnail','editor')
+	); 
+
+	register_post_type( 'program', $args );
+}
+add_action( 'init', 'ucsc_register_program_post_type' );
 
 /**
  * Register Majors Post Type
@@ -143,45 +229,3 @@ function ucsc_register_major_post_type() {
 }
 add_action( 'init', 'ucsc_register_major_post_type' );
 
-/**
- * Register Programs Post Type
- */
-
-function ucsc_register_program_post_type() {
-	$labels = array(
-		'name' => 'Programs',
-		'singular_name' => 'Program',
-		'add_new' => 'Add New Program',
-		'add_new_item' => 'Add New Program',
-		'edit_item' => 'Edit Program',
-		'new_item' => 'New Program',
-		'view_item' => 'View Program',
-		'search_items' => 'Search Programs',
-		'not_found' =>  'No Programs found',
-		'not_found_in_trash' => 'No Programs found in trash',
-		'parent_item_colon' => '',
-		'menu_name' => 'Programs'
-	);
-	
-	$args = array(
-		'labels' => $labels,
-		'public' => true,
-		'publicly_queryable' => true,
-		'show_ui' => true, 
-		'show_in_menu' => true, 
-		'query_var' => true,
-		'rewrite' => true,
-		'capability_type' => 'post',
-		'has_archive' => false, 
-		'hierarchical' => false,
-		'menu_position' => null,
-		'menu_icon' => 'dashicons-book',
-		'show_in_rest'       => true,
-  		'rest_base'          => 'programs-api',
-  		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','editor')
-	); 
-
-	register_post_type( 'program', $args );
-}
-add_action( 'init', 'ucsc_register_program_post_type' );
