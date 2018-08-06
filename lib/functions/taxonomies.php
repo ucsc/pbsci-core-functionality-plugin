@@ -41,6 +41,7 @@ function ucsc_register_location_taxonomy() {
 			'show_ui' => true,
 			'query_var' => true,
 			'rewrite' => array( 'slug' => 'slider-location' ),
+			'show_in_rest'       => true, //Required for Gutenberg editor
 		)
 	);
 }
@@ -74,6 +75,7 @@ function ucsc_register_program_taxonomy() {
 			'show_ui' => true,
 			'query_var' => true,
 			'rewrite' => array( 'slug' => 'program-type' ),
+			'show_in_rest'       => true, //Required for Gutenberg editor
 		)
 	);
 }
@@ -85,32 +87,32 @@ add_action( 'init', 'ucsc_register_program_taxonomy' );
  * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
  */
 
-function ucsc_register_degrees_offered_taxonomy() {
-	$labels = array(
-		'name' => 'Careers',
-		'singular_name' => 'Careers',
-		'search_items' =>  'Search Careers',
-		'all_items' => 'All Careers',
-		'parent_item' => 'Parent Careers',
-		'parent_item_colon' => 'Parent Careers:',
-		'edit_item' => 'Edit Careers',
-		'update_item' => 'Update Careers',
-		'add_new_item' => 'Add New Degree Offered',
-		'new_item_name' => 'New Degree Offered',
-		'menu_name' => 'Careers'
-	); 	
+// function ucsc_register_degrees_offered_taxonomy() {
+// 	$labels = array(
+// 		'name' => 'Careers',
+// 		'singular_name' => 'Careers',
+// 		'search_items' =>  'Search Careers',
+// 		'all_items' => 'All Careers',
+// 		'parent_item' => 'Parent Careers',
+// 		'parent_item_colon' => 'Parent Careers:',
+// 		'edit_item' => 'Edit Careers',
+// 		'update_item' => 'Update Careers',
+// 		'add_new_item' => 'Add New Degree Offered',
+// 		'new_item_name' => 'New Degree Offered',
+// 		'menu_name' => 'Careers'
+// 	); 	
 
-	register_taxonomy( 'degrees-offered', array('program'), 
-		array(
-			'hierarchical' => true,
-			'labels' => $labels,
-			'show_ui' => true,
-			'query_var' => true,
-			'rewrite' => array( 'slug' => 'degrees-offered' ),
-		)
-	);
-}
-add_action( 'init', 'ucsc_register_degrees_offered_taxonomy' );
+// 	register_taxonomy( 'degrees-offered', array('program'), 
+// 		array(
+// 			'hierarchical' => true,
+// 			'labels' => $labels,
+// 			'show_ui' => true,
+// 			'query_var' => true,
+// 			'rewrite' => array( 'slug' => 'degrees-offered' ),
+// 		)
+// 	);
+// }
+// add_action( 'init', 'ucsc_register_degrees_offered_taxonomy' );
 
 /**
  * Create Careers Taxonomy
@@ -140,6 +142,7 @@ function ucsc_register_careers_taxonomy() {
 			'show_ui' => true,
 			'query_var' => true,
 			'rewrite' => array( 'slug' => 'careers' ),
+			'show_in_rest' => true, //Required for Gutenberg editor
 		)
 	);
 }
