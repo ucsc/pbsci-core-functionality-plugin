@@ -136,7 +136,7 @@ function ucsc_register_department_post_type() {
 		'show_in_rest'       => true,
   		'rest_base'          => 'departments-api',
   		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','editor')
+		'supports' => array('title','thumbnail')
 	); 
 
 	register_post_type( 'department', $args );
@@ -179,7 +179,7 @@ function ucsc_register_program_post_type() {
 		'show_in_rest'       => true,
   		'rest_base'          => 'programs-api',
   		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','editor')
+		'supports' => array('title','thumbnail')
 	); 
 
 	register_post_type( 'program', $args );

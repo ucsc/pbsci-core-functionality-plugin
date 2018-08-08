@@ -320,6 +320,16 @@ function ucsc_department_metaboxes() {
 	) );
 
 	$cmb->add_field( array(
+		'name' => esc_html__( 'Department Blurb', 'cmb2' ),
+		'desc' => esc_html__( 'Enter a short description of the department here', 'cmb2' ),
+		'id'   => $prefix . 'department_blurb_wysiwyg',
+		'type' => 'wysiwyg',
+		'options' => array(
+			'textarea_rows' => 5,
+		),
+	) );
+
+	$cmb->add_field( array(
 		'name' => esc_html__( 'Department Location', 'cmb2' ),
 		'desc' => esc_html__( 'Enter the campus location of this department', 'cmb2' ),
 		'id'   => $prefix . 'textmedium',
@@ -385,7 +395,40 @@ function ucsc_program_metaboxes() {
 	) );
 
 	$cmb->add_field( array(
-		'name'    => __( 'Degrees offered', 'cmb2' ),
+		'name' => esc_html__( 'Program Subtitle', 'cmb2' ),
+		'desc' => esc_html__( 'Enter a subtitle here (optional)', 'cmb2' ),
+		'id'   => $prefix . 'program_subtitle_text',
+		'type' => 'text',
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Program Blurb', 'cmb2' ),
+		'desc' => esc_html__( 'Enter a short description of the program here', 'cmb2' ),
+		'id'   => $prefix . 'program_blurb_wysiwyg',
+		'type' => 'wysiwyg',
+		'options' => array(
+			'textarea_rows' => 5,
+		),
+	) );
+
+	$cmb->add_field( array(
+		'name'    => __( 'Department link', 'cmb2' ),
+		'desc'    => __( 'Drag posts from the left column to the right column to attach them to this page.<br />You may rearrange the order of the posts in the right column by dragging and dropping.', 'cmb2' ),
+		'id'      => $prefix .'attached_cmb2_attached_department',
+		'type'    => 'custom_attached_posts',
+		'column'  => true, // Output in the admin post-listing as a custom column. https://github.com/CMB2/CMB2/wiki/Field-Parameters#column
+		'options' => array(
+			'show_thumbnails' => true, // Show thumbnails on the left
+			'filter_boxes'    => true, // Show a text box for filtering the results
+			'query_args'      => array(
+				'posts_per_page' => 10,
+				'post_type'      => 'department',
+			), // override the get_posts args
+		),
+	) );
+
+	$cmb->add_field( array(
+		'name'    => __( 'Degree requirements', 'cmb2' ),
 		'desc'    => __( 'Drag posts from the left column to the right column to attach them to this page.<br />You may rearrange the order of the posts in the right column by dragging and dropping.', 'cmb2' ),
 		'id'      => $prefix .'attached_cmb2_attached_majors',
 		'type'    => 'custom_attached_posts',

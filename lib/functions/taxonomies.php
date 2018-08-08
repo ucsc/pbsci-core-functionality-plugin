@@ -102,7 +102,7 @@ function ucsc_register_degrees_offered_taxonomy() {
 		'menu_name' => 'Degrees Offered'
 	); 	
 
-	register_taxonomy( 'degrees-offered', array('major','program'), 
+	register_taxonomy( 'degrees-offered', array('program'), 
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
@@ -115,7 +115,7 @@ function ucsc_register_degrees_offered_taxonomy() {
 		)
 	);
 }
-// add_action( 'init', 'ucsc_register_degrees_offered_taxonomy' );
+add_action( 'init', 'ucsc_register_degrees_offered_taxonomy' );
 
 /**
  * Create Careers Taxonomy
@@ -152,3 +152,39 @@ function ucsc_register_careers_taxonomy() {
 	);
 }
 add_action( 'init', 'ucsc_register_careers_taxonomy' );
+
+/**
+ * Create Academic Options
+ * @since 1.0.0
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+
+function ucsc_register_academic_options_taxonomy() {
+	$labels = array(
+		'name' => 'Academic Options',
+		'singular_name' => 'Academic Option',
+		'search_items' =>  'Search Academic Options',
+		'all_items' => 'All Academic Options',
+		'parent_item' => 'Parent Academic Option',
+		'parent_item_colon' => 'Parent Academic Option:',
+		'edit_item' => 'Edit Academic Options',
+		'update_item' => 'Update Academic Options',
+		'add_new_item' => 'Add New Academic Option',
+		'new_item_name' => 'New Academic Option',
+		'menu_name' => 'Academic Options'
+	); 	
+
+	register_taxonomy( 'academic-options', array('program'), 
+		array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array( 'slug' => 'academic-options' ),
+			'show_in_rest' => true, //Required for Gutenberg editor
+			'rest_base'          => 'academic-options-api',
+  			'rest_controller_class' => 'WP_REST_Terms_Controller',
+		)
+	);
+}
+add_action( 'init', 'ucsc_register_academic_options_taxonomy' );

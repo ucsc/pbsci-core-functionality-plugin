@@ -51,3 +51,13 @@ function ucsc_underscore_slider_image_metabox() {
  remove_meta_box( 'postimagediv', 'slider', 'side' );
  add_meta_box('postimagediv', __('Slider Image'), 'post_thumbnail_meta_box', 'slider', 'normal', 'high');
 }
+
+/**
+ * Move Yoast Metabox to bottom
+ * @author aderaaij
+ * @link https://gist.github.com/aderaaij/6767503
+ */
+function yoasttobottom() {
+	return 'low';
+}
+add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
