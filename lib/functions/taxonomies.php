@@ -153,6 +153,7 @@ function ucsc_register_careers_taxonomy() {
 }
 add_action( 'init', 'ucsc_register_careers_taxonomy' );
 
+
 /**
  * Create Academic Options
  * @since 1.0.0

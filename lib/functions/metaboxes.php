@@ -473,6 +473,24 @@ function ucsc_major_metaboxes() {
 		// 'closed'     => true, // Keep the metabox closed by default
 	) );
 
+	$cmb->add_field( array(
+		'name'    => esc_html__( 'Components of this Major', 'cmb2' ),
+		'desc'    => esc_html__( 'check the various aspects this major includes', 'cmb2' ),
+		'id'      => $prefix . 'major_components_multicheckbox',
+		'type'    => 'multicheck',
+		// 'multiple' => true, // Store values in individual rows
+		'options' => array(
+			'overview' => esc_html__( 'Overview', 'cmb2' ),
+			'bachelors' => esc_html__( 'Bachelor\'s', 'cmb2' ),
+			'minor' => esc_html__( 'Minor', 'cmb2' ),
+			'masters' => esc_html__( 'Master\'s', 'cmb2' ),
+			'doctoral' => esc_html__( 'Doctoral', 'cmb2' ),
+			'faculty' => esc_html__( 'Faculty', 'cmb2' ),
+			'courses' => esc_html__( 'Courses', 'cmb2' ),
+		),
+		'inline'  => true, // Toggles display to inline
+	) );
+
 	// $cmb->add_field( array(
 	// 	'name' => esc_html__( 'Study and Research Opportunities', 'cmb2' ),
 	// 	'desc' => esc_html__( 'Describe study and research opportunities here', 'cmb2' ),
@@ -503,4 +521,78 @@ function ucsc_major_metaboxes() {
 	// 	),
 	// ) );
 
+}
+
+add_action( 'cmb2_admin_init', 'ucsc_register_repeatable_major_components_metabox' );
+/**
+ * Hook in and add a metabox to demonstrate repeatable grouped fields
+ */
+function ucsc_register_repeatable_major_components_metabox() {
+	$prefix = '_ucsc_';
+
+	/**
+	 * Repeatable Field Groups
+	 */
+	$cmb_group = new_cmb2_box( array(
+		'id'           => $prefix . 'metabox',
+		'title'        => esc_html__( 'Repeating Component Field Group', 'cmb2' ),
+		'object_types' => array( 'major' ),
+	) );
+
+	// $group_field_id is the field id string, so in this case: $prefix . 'demo'
+	$group_field_id = $cmb_group->add_field( array(
+		'id'          => $prefix . 'major_components_group',
+		'type'        => 'group',
+		'description' => esc_html__( 'Generates reusable form entries', 'cmb2' ),
+		'options'     => array(
+			'group_title'   => esc_html__( 'Major Component {#}', 'cmb2' ), // {#} gets replaced by row number
+			'add_button'    => esc_html__( 'Add Another Major Component', 'cmb2' ),
+			'remove_button' => esc_html__( 'Remove Major Component', 'cmb2' ),
+			'sortable'      => true,
+			// 'closed'     => true, // true to have the groups closed by default
+		),
+	) );
+
+	/**
+	 * Group fields works the same, except ids only need
+	 * to be unique to the group. Prefix is not needed.
+	 *
+	 * The parent field's id needs to be passed as the first argument.
+	 */
+	$cmb_group->add_group_field($group_field_id, array(
+		'name'    => esc_html__( 'Major Component', 'cmb2' ),
+		'desc'    => esc_html__( 'which major component is this?', 'cmb2' ),
+		'id'      => 'major_component_checkbox',
+		'type'    => 'select',
+		'show_option_none' => true,
+		// 'default' => 'Select One',
+		'options' => array(
+			'overview' => esc_html__( 'Overview', 'cmb2' ),
+			'bachelors' => esc_html__( 'Bachelor\'s', 'cmb2' ),
+			'minor' => esc_html__( 'Minor', 'cmb2' ),
+			'masters' => esc_html__( 'Master\'s', 'cmb2' ),
+			'doctoral' => esc_html__( 'Doctoral', 'cmb2' ),
+			'faculty' => esc_html__( 'Faculty', 'cmb2' ),
+			'courses' => esc_html__( 'Courses', 'cmb2' ),
+		),
+		'inline'  => true, // Toggles display to inline
+	) );
+
+	$cmb_group->add_group_field($group_field_id, array(
+		'name' => esc_html__( 'Component text', 'cmb2' ),
+		'desc' => esc_html__( 'Include description of component here', 'cmb2' ),
+		'id'   => 'major_component_wysiwyg',
+		'type' => 'wysiwyg',
+		'options' => array(
+			'wpautop' => true,
+			'textarea_rows' => 5,
+		),
+	) );
+
+	$cmb_group->add_group_field($group_field_id, array(
+		'name' => esc_html__( 'Component text', 'cmb2' ),
+		'desc' => esc_html__( 'Include description of component here', 'cmb2' ),
+		'id'   => 'major_component_text',
+		'type' => 'textarea',
+	) );
 }

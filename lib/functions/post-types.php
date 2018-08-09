@@ -98,7 +98,7 @@ function ucsc_register_division_post_type() {
 
 	register_post_type( 'division', $args );
 }
-add_action( 'init', 'ucsc_register_division_post_type' );
+// add_action( 'init', 'ucsc_register_division_post_type' );
 
 /**
  * Register Departments Post Type
@@ -215,7 +215,7 @@ function ucsc_register_major_post_type() {
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
-		'has_archive' => false, 
+		'has_archive' => true, 
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-awards',
