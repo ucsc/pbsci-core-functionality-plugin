@@ -11,11 +11,11 @@
  * @copyright    Copyright (c) 2015, Blackbird Consulting
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
- 
+
 /**
  * Don't Update Plugin
  * @since 1.0.0
- * 
+ *
  * This prevents you being prompted to update if there's a public plugin
  * with the same name.
  *
