@@ -466,6 +466,8 @@ function ucsc_major_metaboxes() {
 		'id'            => 'major_metabox',
 		'title'         => __( 'Major Metabox', 'cmb2' ),
 		'object_types'  => array( 'major', ), // Post type
+		'show_in_rest' => WP_REST_Server::ALLMETHODS,
+
 		'context'       => 'normal',
 		'priority'      => 'core',
 		'show_names'    => true, // Show field names on the left
@@ -491,39 +493,86 @@ function ucsc_major_metaboxes() {
 		'inline'  => true, // Toggles display to inline
 	) );
 
-	// $cmb->add_field( array(
-	// 	'name' => esc_html__( 'Study and Research Opportunities', 'cmb2' ),
-	// 	'desc' => esc_html__( 'Describe study and research opportunities here', 'cmb2' ),
-	// 	'id'   => $prefix . 'research_wysiwyg',
-	// 	'type' => 'wysiwyg',
-	// 	'options' => array(
-	// 		'textarea_rows' => 5,
-	// 	),
-	// ) );
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Overview', 'cmb2' ),
+		'desc' => esc_html__( 'Describe the major overview here', 'cmb2' ),
+		'id'   => $prefix . 'overview_wysiwyg',
+		'type' => 'wysiwyg',
+		'options' => array(
+			'textarea_rows' => 5,
+		),
+		'classes' => 'major-overview',
+	) );
 
-	// $cmb->add_field( array(
-	// 	'name' => esc_html__( 'Information for First Year Students', 'cmb2' ),
-	// 	'desc' => esc_html__( 'Include information for first year students here', 'cmb2' ),
-	// 	'id'   => $prefix . 'first_year_wysiwyg',
-	// 	'type' => 'wysiwyg',
-	// 	'options' => array(
-	// 		'textarea_rows' => 5,
-	// 	),
-	// ) );
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Bachelor\'s Degree', 'cmb2' ),
+		'desc' => esc_html__( 'Describe the requirements for the Bachelor\'s degree here', 'cmb2' ),
+		'id'   => $prefix . 'bachelors_wysiwyg',
+		'type' => 'wysiwyg',
+		'options' => array(
+			'textarea_rows' => 5,
+		),
+		'classes' => 'major-bachelors',
+	) );
 
-	// $cmb->add_field( array(
-	// 	'name' => esc_html__( 'Information for Transfer Students', 'cmb2' ),
-	// 	'desc' => esc_html__( 'Include information for transfer students here', 'cmb2' ),
-	// 	'id'   => $prefix . 'transfer_wysiwyg',
-	// 	'type' => 'wysiwyg',
-	// 	'options' => array(
-	// 		'textarea_rows' => 5,
-	// 	),
-	// ) );
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Minor', 'cmb2' ),
+		'desc' => esc_html__( 'Describe the requirements for this degree\'s minor here', 'cmb2' ),
+		'id'   => $prefix . 'minor_wysiwyg',
+		'type' => 'wysiwyg',
+		'options' => array(
+			'textarea_rows' => 5,
+		),
+		'classes' => 'major-minor',
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Master\'s Degree', 'cmb2' ),
+		'desc' => esc_html__( 'Describe the requirements for the Master\'s degree here', 'cmb2' ),
+		'id'   => $prefix . 'masters_wysiwyg',
+		'type' => 'wysiwyg',
+		'options' => array(
+			'textarea_rows' => 5,
+		),
+		'classes' => 'major-masters',
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Doctoral Degree', 'cmb2' ),
+		'desc' => esc_html__( 'Describe the requirements for this degree\'s minor here', 'cmb2' ),
+		'id'   => $prefix . 'doctoral_wysiwyg',
+		'type' => 'wysiwyg',
+		'options' => array(
+			'textarea_rows' => 5,
+		),
+		'classes' => 'major-doctoral',
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Faculty', 'cmb2' ),
+		'desc' => esc_html__( 'Describe the faculty here', 'cmb2' ),
+		'id'   => $prefix . 'faculty_wysiwyg',
+		'type' => 'wysiwyg',
+		'options' => array(
+			'textarea_rows' => 5,
+		),
+		'classes' => 'major-faculty',
+	) );
+
+	$cmb->add_field( array(
+		'name' => esc_html__( 'Courses', 'cmb2' ),
+		'desc' => esc_html__( 'Describe the courses for this degree here', 'cmb2' ),
+		'id'   => $prefix . 'courses_wysiwyg',
+		'type' => 'wysiwyg',
+		'options' => array(
+			'textarea_rows' => 5,
+		),
+		'classes' => 'major-courses',
+	) );
 
 }
 
-add_action( 'cmb2_admin_init', 'ucsc_register_repeatable_major_components_metabox' );
+// add_action( 'cmb2_admin_init', 'ucsc_register_repeatable_major_components_metabox' );
 /**
  * Hook in and add a metabox to demonstrate repeatable grouped fields
  */
