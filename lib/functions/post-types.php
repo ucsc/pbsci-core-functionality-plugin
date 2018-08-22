@@ -18,44 +18,44 @@
  * @link http://codex.wordpress.org/Function_Reference/register_post_type
  */
 
-function ucsc_register_slider_post_type() {
+function ucsc_register_slide_post_type() {
 	$labels = array(
-		'name' => 'Slider Items',
-		'singular_name' => 'Slider Item',
-		'add_new' => 'Add New',
-		'add_new_item' => 'Add New Slider Item',
-		'edit_item' => 'Edit Slider Item',
-		'new_item' => 'New Slider Item',
-		'view_item' => 'View Slider Item',
-		'search_items' => 'Search Slider Items',
-		'not_found' =>  'No slider items found',
-		'not_found_in_trash' => 'No slider items found in trash',
+		'name' => 'Slides',
+		'singular_name' => 'Slide',
+		'add_new' => 'Add Slide',
+		'add_new_item' => 'Add New Slide',
+		'edit_item' => 'Edit Slide',
+		'new_item' => 'New Slide',
+		'view_item' => 'View Slide',
+		'search_items' => 'Search Slides',
+		'not_found' =>  'No slides found',
+		'not_found_in_trash' => 'No slides found in trash',
 		'parent_item_colon' => '',
-		'menu_name' => 'Slider'
+		'menu_name' => 'Slides'
 	);
-	
+
 	$args = array(
 		'labels' => $labels,
 		'public' => true,
 		'publicly_queryable' => true,
-		'show_ui' => true, 
-		'show_in_menu' => true, 
+		'show_ui' => true,
+		'show_in_menu' => true,
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
-		'has_archive' => false, 
+		'has_archive' => false,
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-images-alt2',
 		'show_in_rest'       => true,
-  		'rest_base'          => 'slides-api',
+  		'rest_base'          => 'slide-api',
   		'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'supports' => array('title','thumbnail')
-	); 
+	);
 
-	register_post_type( 'slider', $args );
+	register_post_type( 'slide', $args );
 }
-add_action( 'init', 'ucsc_register_slider_post_type' );	
+add_action( 'init', 'ucsc_register_slide_post_type' );
 
 /**
  * Register Divisions Post Type
@@ -76,17 +76,17 @@ function ucsc_register_division_post_type() {
 		'parent_item_colon' => '',
 		'menu_name' => 'Divisions'
 	);
-	
+
 	$args = array(
 		'labels' => $labels,
 		'public' => true,
 		'publicly_queryable' => true,
-		'show_ui' => true, 
-		'show_in_menu' => true, 
+		'show_ui' => true,
+		'show_in_menu' => true,
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
-		'has_archive' => false, 
+		'has_archive' => false,
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book-alt',
@@ -94,7 +94,7 @@ function ucsc_register_division_post_type() {
   		'rest_base'          => 'divisions-api',
   		'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'supports' => array('title','thumbnail','editor')
-	); 
+	);
 
 	register_post_type( 'division', $args );
 }
@@ -119,17 +119,17 @@ function ucsc_register_department_post_type() {
 		'parent_item_colon' => '',
 		'menu_name' => 'Departments'
 	);
-	
+
 	$args = array(
 		'labels' => $labels,
 		'public' => true,
 		'publicly_queryable' => true,
-		'show_ui' => true, 
-		'show_in_menu' => true, 
+		'show_ui' => true,
+		'show_in_menu' => true,
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
-		'has_archive' => false, 
+		'has_archive' => false,
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book-alt',
@@ -137,7 +137,7 @@ function ucsc_register_department_post_type() {
   		'rest_base'          => 'departments-api',
   		'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'supports' => array('title','thumbnail')
-	); 
+	);
 
 	register_post_type( 'department', $args );
 }
@@ -162,17 +162,17 @@ function ucsc_register_program_post_type() {
 		'parent_item_colon' => '',
 		'menu_name' => 'Programs'
 	);
-	
+
 	$args = array(
 		'labels' => $labels,
 		'public' => true,
 		'publicly_queryable' => true,
-		'show_ui' => true, 
-		'show_in_menu' => true, 
+		'show_ui' => true,
+		'show_in_menu' => true,
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
-		'has_archive' => false, 
+		'has_archive' => false,
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book',
@@ -180,7 +180,7 @@ function ucsc_register_program_post_type() {
   		'rest_base'          => 'programs-api',
   		'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'supports' => array('title','thumbnail')
-	); 
+	);
 
 	register_post_type( 'program', $args );
 }
@@ -205,25 +205,25 @@ function ucsc_register_major_post_type() {
 		'parent_item_colon' => '',
 		'menu_name' => 'Majors'
 	);
-	
+
 	$args = array(
 		'labels' => $labels,
 		'public' => true,
 		'publicly_queryable' => true,
-		'show_ui' => true, 
-		'show_in_menu' => true, 
+		'show_ui' => true,
+		'show_in_menu' => true,
 		'query_var' => true,
 		'rewrite' => true,
 		'capability_type' => 'post',
-		'has_archive' => true, 
+		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-awards',
 		'show_in_rest'       => true,
   		'rest_base'          => 'majors-api',
   		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','editor')
-	); 
+		'supports' => array('title','thumbnail')
+	);
 
 	register_post_type( 'major', $args );
 }

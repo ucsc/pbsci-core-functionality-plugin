@@ -41,15 +41,15 @@ add_filter( 'http_request_args', 'bb_custom_functionality_hidden', 5, 2 );
 add_filter( 'widget_text', 'do_shortcode' );
 
 /**
- * Move Featured Image Metabox on 'slider' post type
+ * Move Featured Image Metabox on 'slide' post type
  * @author Bill Erickson
  * @link http://www.billerickson.net/code/move-featured-image-metabox
  */
 add_action('do_meta_boxes', 'ucsc_underscore_slider_image_metabox' );
 
 function ucsc_underscore_slider_image_metabox() {
- remove_meta_box( 'postimagediv', 'slider', 'side' );
- add_meta_box('postimagediv', __('Slider Image'), 'post_thumbnail_meta_box', 'slider', 'normal', 'high');
+ remove_meta_box( 'postimagediv', 'slide', 'side' );
+ add_meta_box('postimagediv', __('Slide Image'), 'post_thumbnail_meta_box', 'slide', 'normal', 'high');
 }
 
 /**
