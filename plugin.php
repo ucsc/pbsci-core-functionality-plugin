@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: UCSC PBSci Custom Functionality
+ * Plugin Name: UCSC Custom Functionality
  * Plugin URI: https://github.com/Herm71/blackbird-core-functionality-plugin.git
  * Description: Contains custom functionality. Theme independent.
  * Version: 1.1.0
@@ -18,24 +18,24 @@
  */
 
 // Plugin Directory
-define( 'BB_DIR', dirname( __FILE__ ) );
+define( 'UCSC_DIR', dirname( __FILE__ ) );
 
 //Include Customization files:
 
 // Post Types
-require_once( BB_DIR . '/lib/functions/post-types.php' );
+require_once( UCSC_DIR . '/lib/functions/post-types.php' );
 
 // Taxonomies
-require_once( BB_DIR . '/lib/functions/taxonomies.php' );
+require_once( UCSC_DIR . '/lib/functions/taxonomies.php' );
 
 // Shortcodes
-//require_once( BB_DIR . '/lib/functions/shortcodes.php' );
+//require_once( UCSC_DIR . '/lib/functions/shortcodes.php' );
 
 // Sidebars
-//require_once( BB_DIR . '/lib/functions/sidebars.php' );
+//require_once( UCSC_DIR . '/lib/functions/sidebars.php' );
 
 // Widgets
-require_once( BB_DIR . '/lib/functions/widgets.php' );
+require_once( UCSC_DIR . '/lib/functions/widgets.php' );
 
 // General
-require_once( BB_DIR . '/lib/functions/general.php' );
+require_once( UCSC_DIR . '/lib/functions/general.php' );
