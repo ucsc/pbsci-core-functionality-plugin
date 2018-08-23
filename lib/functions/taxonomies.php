@@ -32,9 +32,9 @@ function ucsc_register_location_taxonomy() {
 		'add_new_item' => 'Add New Slider Location',
 		'new_item_name' => 'New Slider Location Name',
 		'menu_name' => 'Slider Location'
-	); 	
+	);
 
-	register_taxonomy( 'slider-location', array('slider'), 
+	register_taxonomy( 'slider-location', array('slider'),
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
@@ -66,9 +66,9 @@ function ucsc_register_program_taxonomy() {
 		'add_new_item' => 'Add New Program Type',
 		'new_item_name' => 'New Program Type Name',
 		'menu_name' => 'Program Type'
-	); 	
+	);
 
-	register_taxonomy( 'program-type', array('program'), 
+	register_taxonomy( 'program-type', array('program'),
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
@@ -79,7 +79,7 @@ function ucsc_register_program_taxonomy() {
 		)
 	);
 }
-add_action( 'init', 'ucsc_register_program_taxonomy' );
+// add_action( 'init', 'ucsc_register_program_taxonomy' );
 
 /**
  * Create Degrees Offered Taxonomy
@@ -100,9 +100,9 @@ function ucsc_register_degrees_offered_taxonomy() {
 		'add_new_item' => 'Add New Degree',
 		'new_item_name' => 'New Degree',
 		'menu_name' => 'Degrees Offered'
-	); 	
+	);
 
-	register_taxonomy( 'degrees-offered', array('program'), 
+	register_taxonomy( 'degrees-offered', array('program'),
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
@@ -115,7 +115,7 @@ function ucsc_register_degrees_offered_taxonomy() {
 		)
 	);
 }
-add_action( 'init', 'ucsc_register_degrees_offered_taxonomy' );
+// add_action( 'init', 'ucsc_register_degrees_offered_taxonomy' );
 
 /**
  * Create Careers Taxonomy
@@ -136,9 +136,9 @@ function ucsc_register_careers_taxonomy() {
 		'add_new_item' => 'Add New Career',
 		'new_item_name' => 'New Career',
 		'menu_name' => 'Careers'
-	); 	
+	);
 
-	register_taxonomy( 'careers', array('major','program'), 
+	register_taxonomy( 'careers', array('major','program'),
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
@@ -151,7 +151,7 @@ function ucsc_register_careers_taxonomy() {
 		)
 	);
 }
-add_action( 'init', 'ucsc_register_careers_taxonomy' );
+// add_action( 'init', 'ucsc_register_careers_taxonomy' );
 
 
 /**
@@ -173,9 +173,9 @@ function ucsc_register_academic_options_taxonomy() {
 		'add_new_item' => 'Add New Academic Option',
 		'new_item_name' => 'New Academic Option',
 		'menu_name' => 'Academic Options'
-	); 	
+	);
 
-	register_taxonomy( 'academic-options', array('program'), 
+	register_taxonomy( 'academic-options', array('program'),
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
@@ -188,4 +188,4 @@ function ucsc_register_academic_options_taxonomy() {
 		)
 	);
 }
-add_action( 'init', 'ucsc_register_academic_options_taxonomy' );
+// add_action( 'init', 'ucsc_register_academic_options_taxonomy' );

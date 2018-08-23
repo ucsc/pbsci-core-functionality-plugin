@@ -61,3 +61,19 @@ function yoasttobottom() {
 	return 'low';
 }
 add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
+
+/**
+ * Redirect CPT archives to Pages
+ *
+ */
+function ucsc_archive_to_page_redirect() {
+    if( is_post_type_archive( 'major' ) ) {
+        wp_redirect( home_url( '/academics/programs/' ), 301 );
+        exit();
+	}
+	if( is_post_type_archive( 'department' ) ) {
+        wp_redirect( home_url( '/academics/departments/' ), 301 );
+        exit();
+    }
+}
+add_action( 'template_redirect', 'ucsc_archive_to_page_redirect' );
