@@ -1,0 +1,13 @@
+.git/
+.gitignore
+.gitattributes
+.vscode/
+node_modules/
+sass/
+package.json
+package-lock.json
+gulpfile.js
+syncplug
+pull-content
+push-content
+rsync-exclude.txt
