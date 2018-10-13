@@ -63,12 +63,64 @@ function yoasttobottom() {
 add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
 
 /**
+ * Bring Excerpt Metabox to below Title on Degree post type
+ * @author
+ * @link https://wpartisan.me/tutorials/wordpress-how-to-move-the-excerpt-meta-box-above-the-editor
+ */
+/**
+ * Removes the regular excerpt box. We're not getting rid
+ * of it, we're just moving it above the wysiwyg editor
+ *
+ * @return null
+ */
+function oz_remove_normal_excerpt() {
+    remove_meta_box( 'postexcerpt' , 'degree' , 'normal' );
+}
+add_action( 'admin_menu' , 'oz_remove_normal_excerpt' );
+
+/**
+ * Add the excerpt meta box back in with a custom screen location
+ *
+ * @param  string $post_type
+ * @return null
+ */
+function oz_add_excerpt_meta_box( $post_type ) {
+    if ( in_array( $post_type, array( 'degree' ) ) ) {
+        add_meta_box(
+            'oz_postexcerpt',
+            __( 'Excerpt', 'ucsc-underscore' ),
+            'post_excerpt_meta_box',
+            $post_type,
+            'after_title',
+            'high'
+        );
+    }
+}
+add_action( 'add_meta_boxes', 'oz_add_excerpt_meta_box' );
+
+/**
+ * You can't actually add meta boxes after the title by default in WP so
+ * we're being cheeky. We've registered our own meta box position
+ * `after_title` onto which we've regiestered our new meta boxes and
+ * are now calling them in the `edit_form_after_title` hook which is run
+ * after the post tile box is displayed.
+ *
+ * @return null
+ */
+function oz_run_after_title_meta_boxes() {
+    global $post, $wp_meta_boxes;
+    # Output the `below_title` meta boxes:
+    do_meta_boxes( get_current_screen(), 'after_title', $post );
+}
+add_action( 'edit_form_after_title', 'oz_run_after_title_meta_boxes' );
+
+/**
  * Redirect CPT archives to Pages
  *
  */
 function ucsc_archive_to_page_redirect() {
-    if( is_post_type_archive( 'major' ) ) {
-        wp_redirect( home_url( '/academics/programs/' ), 301 );
+    if( is_post_type_archive( 'degree' ) ) {
+        wp_redirect( home_url( '/academics/degrees/' ), 301 );
         exit();
 	}
 	if( is_post_type_archive( 'department' ) ) {

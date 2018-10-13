@@ -144,23 +144,23 @@ function ucsc_register_department_post_type() {
 add_action( 'init', 'ucsc_register_department_post_type' );
 
 /**
- * Register Programs Post Type
+ * Register Degrees Post Type
  */
 
-function ucsc_register_program_post_type() {
+function ucsc_register_degree_post_type() {
 	$labels = array(
-		'name' => 'Programs',
-		'singular_name' => 'Program',
-		'add_new' => 'Add New Program',
-		'add_new_item' => 'Add New Program',
-		'edit_item' => 'Edit Program',
-		'new_item' => 'New Program',
-		'view_item' => 'View Program',
-		'search_items' => 'Search Programs',
-		'not_found' =>  'No Programs found',
-		'not_found_in_trash' => 'No Programs found in trash',
+		'name' => 'Degrees',
+		'singular_name' => 'Degree',
+		'add_new' => 'Add New Degree',
+		'add_new_item' => 'Add New Degree',
+		'edit_item' => 'Edit Degree',
+		'new_item' => 'New Degree',
+		'view_item' => 'View Degree',
+		'search_items' => 'Search Degrees',
+		'not_found' =>  'No Degrees found',
+		'not_found_in_trash' => 'No Degrees found in trash',
 		'parent_item_colon' => '',
-		'menu_name' => 'Programs'
+		'menu_name' => 'Degrees'
 	);
 
 	$args = array(
@@ -177,55 +177,14 @@ function ucsc_register_program_post_type() {
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book',
 		'show_in_rest'       => true,
-  		'rest_base'          => 'programs-api',
+  		'rest_base'          => 'degrees-api',
   		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail')
+		'supports' => array('title','thumbnail','excerpt')
 	);
 
-	register_post_type( 'program', $args );
+	register_post_type( 'degree', $args );
 }
-add_action( 'init', 'ucsc_register_program_post_type' );
+add_action( 'init', 'ucsc_register_degree_post_type' );
 
-/**
- * Register Majors Post Type
- */
 
-function ucsc_register_major_post_type() {
-	$labels = array(
-		'name' => 'Majors',
-		'singular_name' => 'Major',
-		'add_new' => 'Add New Major',
-		'add_new_item' => 'Add New Major',
-		'edit_item' => 'Edit Major',
-		'new_item' => 'New Major',
-		'view_item' => 'View Major',
-		'search_items' => 'Search Majors',
-		'not_found' =>  'No Majors found',
-		'not_found_in_trash' => 'No Majors found in trash',
-		'parent_item_colon' => '',
-		'menu_name' => 'Majors'
-	);
-
-	$args = array(
-		'labels' => $labels,
-		'public' => true,
-		'publicly_queryable' => true,
-		'show_ui' => true,
-		'show_in_menu' => true,
-		'query_var' => true,
-		'rewrite' => true,
-		'capability_type' => 'post',
-		'has_archive' => true,
-		'hierarchical' => false,
-		'menu_position' => null,
-		'menu_icon' => 'dashicons-awards',
-		'show_in_rest'       => true,
-  		'rest_base'          => 'majors-api',
-  		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail')
-	);
-
-	register_post_type( 'major', $args );
-}
-add_action( 'init', 'ucsc_register_major_post_type' );
 
