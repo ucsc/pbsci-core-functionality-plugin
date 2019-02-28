@@ -1,26 +1,108 @@
-<?
-/**
- * Custom Shortcodes
- *
- * This file contains any custom shortcodes 
- *
- * @package      Core_Functionality
- * @since        1.0.0
- * @link         https://github.com/billerickson/Core-Functionality
- * @author       Jason Chafin <Jason@blackbirdconsult.com>
- * @copyright    Copyright (c) 2012, Jason Chafin
- * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
- */
- 
- //Jason's Test Functions
-
-function say_hello() {
-echo 'Dickhead';
-}
-add_shortcode('say-hello', 'say_hello');
-
-
-function show_current_year(){
-	return date('Y');
-}
+<?php
+/**
+ * Custom Shortcodes
+ *
+ * This file contains any custom shortcodes
+ *
+ * @package      Core_Functionality
+ * @since        1.0.0
+ * @link         https://github.com/billerickson/Core-Functionality
+ * @author       Jason Chafin <Jason@blackbirdconsult.com>
+ * @copyright    Copyright (c) 2012, Jason Chafin
+ * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ */
+
+
+
+ //Jason's Test Functions
+
+
+
+function say_hello() {
+
+return 'Hi There';
+
+}
+
+add_shortcode('say-hello', 'say_hello');
+
+function show_current_year(){
+
+	return date('Y');
+
+}
+
 add_shortcode('show_current_year', 'show_current_year');
+
+function footer_dept_loop() {
+	$output = '<ul class="footer-departments-list">';
+	// Call Departments post
+	$args = array (
+		'post_type' => 'department',
+		'orderby' => 'title',
+		'order' => 'ASC',
+		);
+	$department_query = new WP_Query ($args);
+	if($department_query->have_posts()): while ($department_query->have_posts()):$department_query->the_post();
+
+	//Set up the parts
+	$department_title = get_the_title();
+	$department_url = get_permalink();
+	//Construct the parts
+	if ($department_title !=""){
+		$output .= '<li class="chevron-right-white-small"><a href="'.esc_url($department_url).'">'.$department_title.'</a></li>';
+	}
+	wp_reset_postdata();
+endwhile; endif;
+$output .= '</ul>';
+return $output;
+	}
+
+add_shortcode('footer-dept-loop', 'footer_dept_loop');
+
+function footer_social(){
+	$rows = get_field('social_media_property','option');
+	if ($rows){
+		$social = '<ul class="footer-social flex-wrap">';
+		foreach ($rows as $row) {
+			if ($row['social_media_site'] == 'Facebook') :
+				$iconClass = "fa-facebook-f";
+			elseif ($row['social_media_site'] == 'Twitter') :
+					$iconClass = "fa-twitter";
+			elseif ($row['social_media_site'] == 'Instagram') :
+					$iconClass = "fa-instagram";
+			elseif ($row['social_media_site'] == 'Pinterest') :
+					$iconClass = "fa-pinterest-p";
+			elseif ($row['social_media_site'] == 'LinkedIn') :
+					$iconClass = "fa-linkedin-in";
+			elseif ($row['social_media_site'] == 'YouTube') :
+					$iconClass = "fa-youtube";
+			elseif ($row['social_media_site'] == 'Vimeo') :
+					$iconClass = "fa-vimeo";
+			elseif ($row['social_media_site'] == 'Flickr') :
+					$iconClass = "fa-flickr";
+			elseif ($row['social_media_site'] == 'Medium') :
+					$iconClass = "fa-medium";
+			elseif ($row['social_media_site'] == 'Tumblr') :
+					$iconClass = "fa-tumblr";
+			elseif ($row['social_media_site'] == 'Snapchat') :
+					$iconClass = "fa-snapchat-ghost";
+			elseif ($row['social_media_site'] == 'Google+') :
+					$iconClass = "fa-google-plus";
+			elseif ($row['social_media_site'] == 'Choose one') :
+					$iconClass = "";
+			endif;
+				$social .= '<li><a href="'.$row['social_media_link'].'" title="'.$row['social_media_site'].'"><i class="fab '.$iconClass.'" aria-hidden="true"></i></a></li>';
+		}
+		$social .= '</ul>';
+	}
+	return $social;
+}
+add_shortcode('footer-social', 'footer_social');
+
+function footer_logo(){
+	$logo = '<img src="'.IMAGES.'/science-logo.svg" alt=""/>';
+	$logo .= '<p class="newsletter-cta">Get our monthly <span class="impact">Impact</span><span>Report</span> for new world changing discoveries, interesting events, awards, unique opportunities, &amp; much more!</p>';
+	return $logo;
+}
+add_shortcode('footer-logo','footer_logo');

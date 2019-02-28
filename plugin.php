@@ -29,7 +29,7 @@ require_once( UCSC_DIR . '/lib/functions/post-types.php' );
 require_once( UCSC_DIR . '/lib/functions/taxonomies.php' );
 
 // Shortcodes
-//require_once( UCSC_DIR . '/lib/functions/shortcodes.php' );
+require_once( UCSC_DIR . '/lib/functions/shortcodes.php' );
 
 // Sidebars
 //require_once( UCSC_DIR . '/lib/functions/sidebars.php' );
