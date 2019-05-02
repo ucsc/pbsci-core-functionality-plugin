@@ -47,10 +47,10 @@ function footer_dept_loop() {
 
 	//Set up the parts
 	$department_title = get_the_title();
-	$department_url = get_permalink();
+	$department_url = get_field('department_website');
 	//Construct the parts
 	if ($department_title !=""){
-		$output .= '<li class="chevron-right-white-small"><a href="'.esc_url($department_url).'">'.$department_title.'</a></li>';
+		$output .= '<li><a class="chevron-right-white-small" href="'.esc_url($department_url).'">'.$department_title.'</a></li>';
 	}
 	wp_reset_postdata();
 endwhile; endif;
