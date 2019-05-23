@@ -55,7 +55,7 @@ function ucsc_register_slide_post_type() {
 
 	register_post_type( 'slide', $args );
 }
-add_action( 'init', 'ucsc_register_slide_post_type' );
+// add_action( 'init', 'ucsc_register_slide_post_type' );
 
 /**
  * Register Divisions Post Type
@@ -186,5 +186,175 @@ function ucsc_register_degree_post_type() {
 }
 add_action( 'init', 'ucsc_register_degree_post_type' );
 
+/**
+ * Register Student Support Post Type
+ */
 
+function ucsc_register_student_support_post_type() {
+	$labels = array(
+		'name' => 'Student Support Resources',
+		'singular_name' => 'Student Support Resource',
+		'add_new' => 'Add New Student Support Resource',
+		'add_new_item' => 'Add New Student Support Resource',
+		'edit_item' => 'Edit Student Support Resource',
+		'new_item' => 'New Student Support Resource',
+		'view_item' => 'View Student Support Resource',
+		'search_items' => 'Search Student Support Resources',
+		'not_found' =>  'No Student Support Resources found',
+		'not_found_in_trash' => 'No Student Support Resources found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Student Support'
+	);
 
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'query_var' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'has_archive' => true,
+		'hierarchical' => false,
+		'menu_position' => null,
+		'menu_icon' => 'dashicons-book',
+		'show_in_rest'       => true,
+  		// 'rest_base'          => 'Student Support Resources-api',
+  		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title','thumbnail','excerpt')
+	);
+
+	register_post_type( 'student-support', $args );
+}
+add_action( 'init', 'ucsc_register_student_support_post_type' );
+
+/**
+ * Register Student Opportunities Post Type
+ */
+
+function ucsc_register_student_opportunities_post_type() {
+	$labels = array(
+		'name' => 'Student Opportunities',
+		'singular_name' => 'Student Opportunity',
+		'add_new' => 'Add New Student Opportunity',
+		'add_new_item' => 'Add New Student Opportunity',
+		'edit_item' => 'Edit Student Opportunity',
+		'new_item' => 'New Student Opportunity',
+		'view_item' => 'View Student Opportunity',
+		'search_items' => 'Search Student Opportunities',
+		'not_found' =>  'No Student Opportunities found',
+		'not_found_in_trash' => 'No Student Opportunities found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Student Opportunities'
+	);
+
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'query_var' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'has_archive' => true,
+		'hierarchical' => false,
+		'menu_position' => null,
+		'menu_icon' => 'dashicons-book',
+		'show_in_rest'       => true,
+  		// 'rest_base'          => 'Student Support Resources-api',
+  		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title','thumbnail','excerpt')
+	);
+
+	register_post_type( 'studentopportunities', $args );
+}
+add_action( 'init', 'ucsc_register_student_opportunities_post_type' );
+
+/**
+ * Register Institutes and Centers Post Type
+ */
+
+function ucsc_register_institutes_centers_post_type() {
+	$labels = array(
+		'name' => 'Institutes and Centers',
+		'singular_name' => 'Institute or Center',
+		'add_new' => 'Add New Institute or Center',
+		'add_new_item' => 'Add New Institute or Center',
+		'edit_item' => 'Edit Institute or Center',
+		'new_item' => 'New Institute or Center',
+		'view_item' => 'View Institute or Center',
+		'search_items' => 'Search Institutes and Centers',
+		'not_found' =>  'No Institute or Center found',
+		'not_found_in_trash' => 'No Institute or Center found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Institutes and Centers'
+	);
+
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'query_var' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'has_archive' => true,
+		'hierarchical' => false,
+		'menu_position' => null,
+		'menu_icon' => 'dashicons-book',
+		'show_in_rest'       => true,
+  		// 'rest_base'          => 'Student Support Resources-api',
+  		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title','thumbnail','excerpt')
+	);
+
+	register_post_type( 'institutes-centers', $args );
+}
+
+ add_action( 'init', 'ucsc_register_institutes_centers_post_type' );
+
+/**
+ * Register Researcher and Faculty Labs Post Type
+ */
+
+function ucsc_register_labs_post_type() {
+	$labels = array(
+		'name' => 'Researcher and Faculty Labs',
+		'singular_name' => 'Researcher or Faculty Lab',
+		'add_new' => 'Add New Researcher or Faculty Lab',
+		'add_new_item' => 'Add New Researcher or Faculty Lab',
+		'edit_item' => 'Edit Researcher or Faculty Lab',
+		'new_item' => 'New Researcher or Faculty Lab',
+		'view_item' => 'View Researcher or Faculty Lab',
+		'search_items' => 'Search Researcher or Faculty Labs',
+		'not_found' =>  'No Researcher or Faculty Lab found',
+		'not_found_in_trash' => 'No Researcher or Faculty Lab found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Labs'
+	);
+
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'query_var' => true,
+		'rewrite' => true,
+		'capability_type' => 'post',
+		'has_archive' => true,
+		'hierarchical' => false,
+		'menu_position' => null,
+		'menu_icon' => 'dashicons-book',
+		'show_in_rest'       => true,
+  		// 'rest_base'          => 'Student Support Resources-api',
+  		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title','thumbnail','excerpt')
+	);
+
+	register_post_type( 'labs', $args );
+}
+add_action( 'init', 'ucsc_register_labs_post_type' );
