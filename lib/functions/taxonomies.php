@@ -82,110 +82,73 @@ function ucsc_register_program_taxonomy() {
 // add_action( 'init', 'ucsc_register_program_taxonomy' );
 
 /**
- * Create Degrees Offered Taxonomy
+ * Create Student Support Resources Taxonomy
  * @since 1.0.0
  * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
  */
 
-function ucsc_register_degrees_offered_taxonomy() {
+function ucsc_register_student_support_resources_taxonomy() {
 	$labels = array(
-		'name' => 'Degrees Offered',
-		'singular_name' => 'Degree Offered',
-		'search_items' =>  'Search Degrees Offered',
-		'all_items' => 'All Degrees Offered',
-		'parent_item' => 'Parent Degree Offered',
-		'parent_item_colon' => 'Parent Degree Offered:',
-		'edit_item' => 'Edit Degree Offered',
-		'update_item' => 'Update Degree Offered',
-		'add_new_item' => 'Add New Degree',
-		'new_item_name' => 'New Degree',
-		'menu_name' => 'Degrees Offered'
+		'name' => 'Student Support Resources Category',
+		'singular_name' => 'Student Support Resources Category',
+		'search_items' =>  'Search Student Support Resources Categories',
+		'all_items' => 'All Student Support Resources Categories',
+		'parent_item' => 'Parent Student Support Resources Category',
+		'parent_item_colon' => 'Parent Student Support Resources Category:',
+		'edit_item' => 'Edit Student Support Resources Category',
+		'update_item' => 'Update Student Support Resources Category',
+		'add_new_item' => 'Add Student Support Resources Category',
+		'new_item_name' => 'New Student Support Resources Category',
+		'menu_name' => 'Student Support Resources Categories'
 	);
 
-	register_taxonomy( 'degrees-offered', array('program'),
+	register_taxonomy( 'student-support-resources-tax', 'student-support',
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array( 'slug' => 'degrees-offered' ),
+			'rewrite' => array( 'slug' => 'student-support-resources-tax' ),
 			'show_in_rest' => true, //Required for Gutenberg editor
-			'rest_base'          => 'careers-api',
+			'rest_base' => 'student-support-resources-tax-api',
   			'rest_controller_class' => 'WP_REST_Terms_Controller',
 		)
 	);
 }
-// add_action( 'init', 'ucsc_register_degrees_offered_taxonomy' );
+add_action( 'init', 'ucsc_register_student_support_resources_taxonomy' );
 
 /**
- * Create Careers Taxonomy
+ * Create Researcher/Faculty Labs Taxonomy
  * @since 1.0.0
  * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
  */
 
-function ucsc_register_careers_taxonomy() {
+function ucsc_register_researcher_faculty_labs_taxonomy() {
 	$labels = array(
-		'name' => 'Careers',
-		'singular_name' => 'Career',
-		'search_items' =>  'Search Careers',
-		'all_items' => 'All Careers',
-		'parent_item' => 'Parent Career',
-		'parent_item_colon' => 'Parent Career:',
-		'edit_item' => 'Edit Careers',
-		'update_item' => 'Update Careers',
-		'add_new_item' => 'Add New Career',
-		'new_item_name' => 'New Career',
-		'menu_name' => 'Careers'
+		'name' => 'Labs Category',
+		'singular_name' => 'Labs Category',
+		'search_items' =>  'Search Labs Categories',
+		'all_items' => 'All Labs Categories',
+		'parent_item' => 'Parent Labs Category',
+		'parent_item_colon' => 'Parent Labs Category:',
+		'edit_item' => 'Edit Labs Category',
+		'update_item' => 'Update Labs Category',
+		'add_new_item' => 'Add Labs Category',
+		'new_item_name' => 'New Labs Category',
+		'menu_name' => 'Labs Categories'
 	);
 
-	register_taxonomy( 'careers', array('major','program'),
+	register_taxonomy( 'researcher-faculty-labs-tax', 'labs',
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array( 'slug' => 'careers' ),
+			'rewrite' => array( 'slug' => 'researcher-faculty-labs-tax' ),
 			'show_in_rest' => true, //Required for Gutenberg editor
-			'rest_base'          => 'careers-api',
+			'rest_base' => 'researcher-faculty-labs-tax-api',
   			'rest_controller_class' => 'WP_REST_Terms_Controller',
 		)
 	);
 }
-// add_action( 'init', 'ucsc_register_careers_taxonomy' );
-
-
-/**
- * Create Academic Options
- * @since 1.0.0
- * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
- */
-
-function ucsc_register_academic_options_taxonomy() {
-	$labels = array(
-		'name' => 'Academic Options',
-		'singular_name' => 'Academic Option',
-		'search_items' =>  'Search Academic Options',
-		'all_items' => 'All Academic Options',
-		'parent_item' => 'Parent Academic Option',
-		'parent_item_colon' => 'Parent Academic Option:',
-		'edit_item' => 'Edit Academic Options',
-		'update_item' => 'Update Academic Options',
-		'add_new_item' => 'Add New Academic Option',
-		'new_item_name' => 'New Academic Option',
-		'menu_name' => 'Academic Options'
-	);
-
-	register_taxonomy( 'academic-options', array('program'),
-		array(
-			'hierarchical' => true,
-			'labels' => $labels,
-			'show_ui' => true,
-			'query_var' => true,
-			'rewrite' => array( 'slug' => 'academic-options' ),
-			'show_in_rest' => true, //Required for Gutenberg editor
-			'rest_base'          => 'academic-options-api',
-  			'rest_controller_class' => 'WP_REST_Terms_Controller',
-		)
-	);
-}
-// add_action( 'init', 'ucsc_register_academic_options_taxonomy' );
+add_action( 'init', 'ucsc_register_researcher_faculty_labs_taxonomy' );

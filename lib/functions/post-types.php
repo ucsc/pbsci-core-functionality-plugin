@@ -220,8 +220,8 @@ function ucsc_register_student_support_post_type() {
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book',
 		'show_in_rest'       => true,
-  		// 'rest_base'          => 'Student Support Resources-api',
-  		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
+  		'rest_base'          => 'student-support-resources-api',
+  		'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'supports' => array('title','thumbnail','excerpt')
 	);
 
@@ -349,8 +349,8 @@ function ucsc_register_labs_post_type() {
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book',
-		'show_in_rest'       => true,
-  		// 'rest_base'          => 'Student Support Resources-api',
+		'show_in_rest' => true,
+  		// 'rest_base' => 'Student Support Resources-api',
   		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
 		'supports' => array('title','thumbnail','excerpt')
 	);
