@@ -11,29 +11,15 @@
  * @copyright    Copyright (c) 2012, Jason Chafin
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
-
-
-
  //Jason's Test Functions
-
-
-
 function say_hello() {
-
 return 'Hi There';
-
 }
-
 add_shortcode('say-hello', 'say_hello');
-
 function show_current_year(){
-
 	return date('Y');
-
 }
-
 add_shortcode('show_current_year', 'show_current_year');
-
 function footer_dept_loop() {
 	$output = '<ul class="footer-departments-list">';
 	// Call Departments post
@@ -44,7 +30,6 @@ function footer_dept_loop() {
 		);
 	$department_query = new WP_Query ($args);
 	if($department_query->have_posts()): while ($department_query->have_posts()):$department_query->the_post();
-
 	//Set up the parts
 	$department_title = get_the_title();
 	$department_url = get_field('department_website');
@@ -57,9 +42,7 @@ endwhile; endif;
 $output .= '</ul>';
 return $output;
 	}
-
 add_shortcode('footer-dept-loop', 'footer_dept_loop');
-
 function footer_social(){
 	$rows = get_field('social_media_property','option');
 	if ($rows){
@@ -106,3 +89,23 @@ function footer_logo(){
 	return $logo;
 }
 add_shortcode('footer-logo','footer_logo');
+
+function resources_shortcode(){
+	if (class_exists('acf')){
+		if (have_rows('resource_links','option')):
+			$resourceList = '<ul class="footer-resources-list">';
+			while (have_rows('resource_links','option')): the_row();
+				$resources = get_sub_field('resources');
+					if ($resources) {
+						$resourceUrl = $resources['url'];
+						$resourceTitle = $resources['title'];
+						$resourceTarget = $resources['target'] ? $resources['target'] : '_self';
+					}
+				$resourceList .= '<li><a class="chevron-right-white-small" href="'.esc_url($resourceUrl).'" target"'.esc_attr($resourceTarget).'">'.esc_html($resourceTitle).'</a></li>';
+			endwhile;
+		endif;
+		$resourceList .= '</ul>';
+		return $resourceList;
+	}
+}
+add_shortcode('resources-shortcode','resources_shortcode');
