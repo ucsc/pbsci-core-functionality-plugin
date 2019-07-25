@@ -11,15 +11,24 @@
  * @copyright    Copyright (c) 2012, Jason Chafin
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  */
- //Jason's Test Functions
-function say_hello() {
-return 'Hi There';
-}
-add_shortcode('say-hello', 'say_hello');
+
+/**
+ *
+ * Show current year
+ * use: [show_current_year]
+ *
+ **/
 function show_current_year(){
 	return date('Y');
 }
 add_shortcode('show_current_year', 'show_current_year');
+
+/**
+ *
+ * List all departments (used in footer)
+ * use: [footer-dept-loop]
+ *
+ **/
 function footer_dept_loop() {
 	$output = '<ul class="footer-departments-list">';
 	// Call Departments post
@@ -43,7 +52,19 @@ $output .= '</ul>';
 return $output;
 	}
 add_shortcode('footer-dept-loop', 'footer_dept_loop');
+
+/**
+ *
+ * Footer Social
+ * adds social icons and links (intended for footer widget)
+ * Social icons and links are entered into Theme Settings
+ * Requires Advanced Custom Fields
+ *
+ * use: [footer-social]
+ *
+ **/
 function footer_social(){
+	if (class_exists('acf')){
 	$rows = get_field('social_media_property','option');
 	if ($rows){
 		$social = '<ul class="footer-social flex-wrap">';
@@ -76,20 +97,54 @@ function footer_social(){
 					$iconClass = "";
 			endif;
 				$social .= '<li><a href="'.$row['social_media_link'].'" title="'.$row['social_media_site'].'"><i class="fab '.$iconClass.'" aria-hidden="true"></i></a></li>';
-		}
+			}
 		$social .= '</ul>';
+		}
 	}
 	return $social;
 }
 add_shortcode('footer-social', 'footer_social');
 
+/**
+ *
+ * Footer logo
+ * adds logo with CTA text (intended for footer widget)
+ *
+ * use: [footer-logo]
+ *
+ **/
 function footer_logo(){
 	$logo = '<img src="'.IMAGES.'/science-logo.svg" alt=""/>';
-	$logo .= '<p class="newsletter-cta">Get our monthly <span class="impact">Impact</span><span>Report</span> for new world changing discoveries, interesting events, awards, unique opportunities, &amp; much more!</p>';
+	$logo .= '<p class="newsletter-cta">Get our monthly <span class="impact">Impact</span><span class="report">Report</span> for new world changing discoveries, interesting events, awards, unique opportunities, &amp; much more!</p>';
 	return $logo;
 }
 add_shortcode('footer-logo','footer_logo');
 
+/**
+ *
+ * Impact Report
+ * stylized title of the Impact Report
+ *
+ * use: [impact-report]
+ *
+ **/
+function impact_report(){
+
+	$impactReport = '<span class="impact">Impact</span><span class="report">Report</span>';
+	return $impactReport;
+}
+add_shortcode('impact-report','impact_report');
+
+/**
+ *
+ * Resources Links
+ * returns list of resource links
+ * Links are added in Theme Settings
+ * Requires Advanced Custom Fields
+ *
+ * use: [resources-shortcode]
+ *
+ **/
 function resources_shortcode(){
 	if (class_exists('acf')){
 		if (have_rows('resource_links','option')):
