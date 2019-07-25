@@ -101,7 +101,7 @@ function resources_shortcode(){
 						$resourceTitle = $resources['title'];
 						$resourceTarget = $resources['target'] ? $resources['target'] : '_self';
 					}
-				$resourceList .= '<li><a class="chevron-right-white-small" href="'.esc_url($resourceUrl).'" target"'.esc_attr($resourceTarget).'">'.esc_html($resourceTitle).'</a></li>';
+				$resourceList .= '<li><a class="chevron-right-yellow-small" href="'.esc_url($resourceUrl).'" target"'.esc_attr($resourceTarget).'">'.esc_html($resourceTitle).'</a></li>';
 			endwhile;
 		endif;
 		$resourceList .= '</ul>';
