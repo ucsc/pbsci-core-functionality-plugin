@@ -134,7 +134,7 @@ function ucsc_register_researcher_faculty_labs_taxonomy()
 add_action('init', 'ucsc_register_researcher_faculty_labs_taxonomy');
 
 /**
- * Create Faculty and Researcher Student Opportunities Taxonomy
+ * Create Student Opportunities Category
  * Attached to 'studentopportunities' Custom Post Type
  * @since 1.0.0
  * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
@@ -153,7 +153,7 @@ function ucsc_register_student_opportunities_taxonomy()
 		'update_item' => 'Update Student Opportunity Category',
 		'add_new_item' => 'Add Student Opportunity Category',
 		'new_item_name' => 'New Student Opportunity Category',
-		'menu_name' => 'Student Opportunity Categories'
+		'menu_name' => 'Opportunity Categories'
 	);
 
 	register_taxonomy(
@@ -172,3 +172,83 @@ function ucsc_register_student_opportunities_taxonomy()
 	);
 }
 add_action('init', 'ucsc_register_student_opportunities_taxonomy');
+
+/**
+ * Create Student Opportunities Eligibility
+ * Attached to 'studentopportunities' Custom Post Type
+ * @since 1.0.0
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+
+function ucsc_register_student_opportunities_eligibility()
+{
+	$labels = array(
+		'name' => 'Student Eligibility',
+		'singular_name' => 'Student Eligibility Item',
+		'search_items' =>  'Search Eligibility Items',
+		'all_items' => 'All Student Eligibility Items',
+		'parent_item' => 'Parent Student Eligibility Item',
+		'parent_item_colon' => 'Parent Student Eligibility Item:',
+		'edit_item' => 'Edit Student Eligibility Item',
+		'update_item' => 'Update Student Eligibility Item',
+		'add_new_item' => 'Add Student Eligibility Item',
+		'new_item_name' => 'New Student Eligibility Item',
+		'menu_name' => 'Opportunity Eligibility'
+	);
+
+	register_taxonomy(
+		'student-opp-eligib-tax',
+		'studentopportunities',
+		array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array('slug' => 'student-opp-eligib-tax'),
+			'show_in_rest' => true, //Required for Gutenberg editor
+			'rest_base' => 'student-opportunity-eligibility-tax-api',
+			'rest_controller_class' => 'WP_REST_Terms_Controller',
+		)
+	);
+}
+add_action('init', 'ucsc_register_student_opportunities_eligibility');
+
+/**
+ * Create Student Opportunities Availability
+ * Attached to 'studentopportunities' Custom Post Type
+ * @since 1.0.0
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+
+function ucsc_register_student_opportunities_availability()
+{
+	$labels = array(
+		'name' => 'Opportunity Availability',
+		'singular_name' => 'Opportunity Availability Item',
+		'search_items' =>  'Search Availability Items',
+		'all_items' => 'All Opportunity Availability Items',
+		'parent_item' => 'Parent Opportunity Availability Item',
+		'parent_item_colon' => 'Parent Opportunity Availability Item:',
+		'edit_item' => 'Edit Opportunity Availability Item',
+		'update_item' => 'Update Opportunity Availability Item',
+		'add_new_item' => 'Add Opportunity Availability Item',
+		'new_item_name' => 'New Opportunity Availability Item',
+		'menu_name' => 'Opportunity Availability'
+	);
+
+	register_taxonomy(
+		'student-opp-avail-tax',
+		'studentopportunities',
+		array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array('slug' => 'student-opp-avail-tax'),
+			'show_in_rest' => true, //Required for Gutenberg editor
+			'rest_base' => 'student-opportunity-availability-tax-api',
+			'rest_controller_class' => 'WP_REST_Terms_Controller',
+		)
+	);
+}
+add_action('init', 'ucsc_register_student_opportunities_availability');
