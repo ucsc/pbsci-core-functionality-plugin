@@ -52,47 +52,6 @@ function ucsc_register_location_taxonomy()
 }
 // add_action( 'init', 'ucsc_register_location_taxonomy' );
 
-
-/**
- * Create 'Student Support Resources Taxonomy'
- * Attached to 'Student Support' Custom Post Type
- * @since 1.0.0
- * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
- */
-
-function ucsc_register_student_support_resources_taxonomy()
-{
-	$labels = array(
-		'name' => 'Student Support Resources Category',
-		'singular_name' => 'Student Support Resources Category',
-		'search_items' =>  'Search Student Support Resources Categories',
-		'all_items' => 'All Student Support Resources Categories',
-		'parent_item' => 'Parent Student Support Resources Category',
-		'parent_item_colon' => 'Parent Student Support Resources Category:',
-		'edit_item' => 'Edit Student Support Resources Category',
-		'update_item' => 'Update Student Support Resources Category',
-		'add_new_item' => 'Add Student Support Resources Category',
-		'new_item_name' => 'New Student Support Resources Category',
-		'menu_name' => 'Student Support Resources Categories'
-	);
-
-	register_taxonomy(
-		'student-support-resources-tax',
-		'student-support',
-		array(
-			'hierarchical' => true,
-			'labels' => $labels,
-			'show_ui' => true,
-			'query_var' => true,
-			'rewrite' => array('slug' => 'student-support-resources-tax'),
-			'show_in_rest' => true, //Required for Gutenberg editor
-			'rest_base' => 'student-support-resources-tax-api',
-			'rest_controller_class' => 'WP_REST_Terms_Controller',
-		)
-	);
-}
-add_action('init', 'ucsc_register_student_support_resources_taxonomy');
-
 /**
  * Create Faculty and Researcher Labs Taxonomy
  * Attached to 'Labs' Custom Post Type
@@ -174,8 +133,48 @@ function ucsc_register_student_opportunities_taxonomy()
 add_action('init', 'ucsc_register_student_opportunities_taxonomy');
 
 /**
- * Create Student Opportunities Eligibility
- * Attached to 'studentopportunities' Custom Post Type
+ * Create Student Opportunities Category
+ * Attached to 'student-support' Custom Post Type
+ * @since 1.0.0
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+
+function ucsc_register_student_support_taxonomy()
+{
+	$labels = array(
+		'name' => 'Student Support',
+		'singular_name' => 'Student Support Item',
+		'search_items' =>  'Search Student Support Items',
+		'all_items' => 'All Student Support Items',
+		'parent_item' => 'Parent Student Support Item',
+		'parent_item_colon' => 'Parent Student Support Item:',
+		'edit_item' => 'Edit Student Support Item',
+		'update_item' => 'Update Student Support Item',
+		'add_new_item' => 'Add Student Support Item',
+		'new_item_name' => 'New Student Support Item',
+		'menu_name' => 'Student Support Categories'
+	);
+
+	register_taxonomy(
+		'student-support-tax',
+		'student-support',
+		array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array('slug' => 'student-support-tax'),
+			'show_in_rest' => true, //Required for Gutenberg editor
+			'rest_base' => 'student-support-tax-api',
+			'rest_controller_class' => 'WP_REST_Terms_Controller',
+		)
+	);
+}
+add_action('init', 'ucsc_register_student_support_taxonomy');
+
+/**
+ * Create Student Eligibility
+ * Attached to 'studentopportunities' and 'student-support' Custom Post Type
  * @since 1.0.0
  * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
  */
@@ -198,7 +197,7 @@ function ucsc_register_student_opportunities_eligibility()
 
 	register_taxonomy(
 		'student-opp-eligib-tax',
-		'studentopportunities',
+		array('studentopportunities', 'student-support'),
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
@@ -214,8 +213,8 @@ function ucsc_register_student_opportunities_eligibility()
 add_action('init', 'ucsc_register_student_opportunities_eligibility');
 
 /**
- * Create Student Opportunities Availability
- * Attached to 'studentopportunities' Custom Post Type
+ * Create Student Availability
+ * Attached to 'studentopportunities'  and 'student-support' Custom Post Type
  * @since 1.0.0
  * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
  */
@@ -238,7 +237,7 @@ function ucsc_register_student_opportunities_availability()
 
 	register_taxonomy(
 		'student-opp-avail-tax',
-		'studentopportunities',
+		array('studentopportunities', 'student-support'),
 		array(
 			'hierarchical' => true,
 			'labels' => $labels,
@@ -252,3 +251,83 @@ function ucsc_register_student_opportunities_availability()
 	);
 }
 add_action('init', 'ucsc_register_student_opportunities_availability');
+
+/**
+ * Create Research Facility Locations taxonomy
+ * Attached to 'institutes-centers' Custom Post Type
+ * @since 1.0.0
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+
+function ucsc_research_group_location()
+{
+	$labels = array(
+		'name' => 'Research Facility Locations',
+		'singular_name' => 'Research Facility Location',
+		'search_items' =>  'Search Research Facility Locations',
+		'all_items' => 'All Research Facility Locations',
+		'parent_item' => 'Parent Research Facility Location',
+		'parent_item_colon' => 'Parent Research Facility Location:',
+		'edit_item' => 'Edit Research Facility Location',
+		'update_item' => 'Update Research Facility Location',
+		'add_new_item' => 'Add Research Facility Location',
+		'new_item_name' => 'New Research Facility Location',
+		'menu_name' => 'Research Facility Locations'
+	);
+
+	register_taxonomy(
+		'resesarch-group-location-tax',
+		'institutes-centers',
+		array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array('slug' => 'resesarch-group-location-tax'),
+			'show_in_rest' => true, //Required for Gutenberg editor
+			'rest_base' => 'resesarch-group-location-tax-api',
+			'rest_controller_class' => 'WP_REST_Terms_Controller',
+		)
+	);
+}
+add_action('init', 'ucsc_research_group_location');
+
+/**
+ * Create Research Facility and Lab Area of Expertise taxonomy
+ * Attached to 'institutes-centers'  and 'labs' Custom Post Type
+ * @since 1.0.0
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+
+function ucsc_research_expertise()
+{
+	$labels = array(
+		'name' => 'Areas of Expertise',
+		'singular_name' => 'Area of Expertise',
+		'search_items' =>  'Search Areas of Expertise',
+		'all_items' => 'All Areas of Expertise',
+		'parent_item' => 'Parent Area of Expertise',
+		'parent_item_colon' => 'Parent Area of Expertise:',
+		'edit_item' => 'Edit Area of Expertise',
+		'update_item' => 'Update Area of Expertise',
+		'add_new_item' => 'Add Area of Expertise',
+		'new_item_name' => 'New Area of Expertise',
+		'menu_name' => 'Areas of Expertise'
+	);
+
+	register_taxonomy(
+		'resesarch-area-expertise-tax',
+		array('institutes-centers', 'labs'),
+		array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array('slug' => 'resesarch-area-expertise-tax'),
+			'show_in_rest' => true, //Required for Gutenberg editor
+			'rest_base' => 'resesarch-area-expertise-tax-api',
+			'rest_controller_class' => 'WP_REST_Terms_Controller',
+		)
+	);
+}
+add_action('init', 'ucsc_research_expertise');
