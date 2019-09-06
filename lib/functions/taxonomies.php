@@ -323,7 +323,7 @@ function ucsc_research_expertise()
 			'labels' => $labels,
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array('slug' => 'resesarch-area-expertise-tax'),
+			'rewrite' => array('slug' => 'research-area-expertise-tax'),
 			'show_in_rest' => true, //Required for Gutenberg editor
 			'rest_base' => 'resesarch-area-expertise-tax-api',
 			'rest_controller_class' => 'WP_REST_Terms_Controller',
