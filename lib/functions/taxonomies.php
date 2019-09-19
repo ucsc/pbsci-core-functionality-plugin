@@ -324,10 +324,63 @@ function ucsc_research_expertise()
 			'show_ui' => true,
 			'query_var' => true,
 			'rewrite' => array('slug' => 'research-area-expertise-tax'),
-			'show_in_rest' => true, //Required for Gutenberg editor
+			'show_in_rest' => true, //Required for Gutenbfeatured-taxerg editor
 			'rest_base' => 'resesarch-area-expertise-tax-api',
 			'rest_controller_class' => 'WP_REST_Terms_Controller',
 		)
 	);
 }
 add_action('init', 'ucsc_research_expertise');
+
+/**
+ * Create a utility 'Featured' taxonomy
+ * Attached to 'institutes-centers'  and 'labs' Custom Post Type
+ * @since 1.0.0
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+
+// function ucsc_featured()
+// {
+// 	$labels = array(
+// 		'name' => 'Featured Posts',
+// 		'singular_name' => 'Featured Post',
+// 		'search_items' =>  'Search Featured Posts',
+// 		'all_items' => 'All Featured Posts',
+// 		'edit_item' => 'Edit Featured Posts',
+// 		'update_item' => 'Update Featured Posts',
+// 		'add_new_item' => 'Add Featured Post',
+// 		'new_item_name' => 'New Featured Post',
+// 		'menu_name' => 'Featured Posts'
+// 	);
+
+// 	register_taxonomy(
+// 		'featured-tax',
+// 		array('post'),
+// 		array(
+// 			'hierarchical' => true,
+// 			'labels' => $labels,
+// 			'show_ui' => true,
+// 			'query_var' => true,
+// 			'rewrite' => array('slug' => 'featured-tax'),
+// 			'show_in_rest' => true, //Required for Gutenberg editor
+// 			'rest_base' => 'featured-tax-api',
+// 			'rest_controller_class' => 'WP_REST_Terms_Controller',
+// 		)
+// 	);
+// }
+// add_action('init', 'ucsc_featured');
+
+/**
+ * Prevent adding additional terms to Featured taxonomy
+ * Attached to 'institutes-centers'  and 'labs' Custom Post Type
+ * @since 1.0.0
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ * see: https://wordpress.stackexchange.com/questions/112686/how-to-prevent-new-terms-being-added-to-a-custom-taxonomy
+ *
+ */
+
+// add_action('pre_insert_term', function ($term, $taxonomy) {
+// 	return ('featured-tax' === $taxonomy)
+// 		? new WP_Error('term_addition_blocked', __('You cannot add terms to this taxonomy'))
+// 		: $term;
+// }, 0, 2);
