@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Post Types
  *
@@ -13,55 +14,11 @@
  */
 
 /**
- * Create Slider post type
- * @since 1.0.0
- * @link http://codex.wordpress.org/Function_Reference/register_post_type
- */
-
-function ucsc_register_slide_post_type() {
-	$labels = array(
-		'name' => 'Slides',
-		'singular_name' => 'Slide',
-		'add_new' => 'Add Slide',
-		'add_new_item' => 'Add New Slide',
-		'edit_item' => 'Edit Slide',
-		'new_item' => 'New Slide',
-		'view_item' => 'View Slide',
-		'search_items' => 'Search Slides',
-		'not_found' =>  'No slides found',
-		'not_found_in_trash' => 'No slides found in trash',
-		'parent_item_colon' => '',
-		'menu_name' => 'Slides'
-	);
-
-	$args = array(
-		'labels' => $labels,
-		'public' => true,
-		'publicly_queryable' => true,
-		'show_ui' => true,
-		'show_in_menu' => true,
-		'query_var' => true,
-		'rewrite' => true,
-		'capability_type' => 'post',
-		'has_archive' => false,
-		'hierarchical' => false,
-		'menu_position' => null,
-		'menu_icon' => 'dashicons-images-alt2',
-		'show_in_rest'       => true,
-  		'rest_base'          => 'slide-api',
-  		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail')
-	);
-
-	register_post_type( 'slide', $args );
-}
-// add_action( 'init', 'ucsc_register_slide_post_type' );
-
-/**
  * Register Divisions Post Type
  */
 
-function ucsc_register_division_post_type() {
+function ucsc_register_division_post_type()
+{
 	$labels = array(
 		'name' => 'Divisions',
 		'singular_name' => 'Division',
@@ -84,19 +41,21 @@ function ucsc_register_division_post_type() {
 		'show_ui' => true,
 		'show_in_menu' => true,
 		'query_var' => true,
-		'rewrite' => true,
+		'rewrite' => array(
+			'with_front' => false,
+		),
 		'capability_type' => 'post',
 		'has_archive' => false,
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book-alt',
 		'show_in_rest'       => true,
-  		'rest_base'          => 'divisions-api',
-  		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','editor')
+		'rest_base'          => 'divisions-api',
+		'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title', 'thumbnail', 'editor')
 	);
 
-	register_post_type( 'division', $args );
+	register_post_type('division', $args);
 }
 // add_action( 'init', 'ucsc_register_division_post_type' );
 
@@ -104,7 +63,8 @@ function ucsc_register_division_post_type() {
  * Register Departments Post Type
  */
 
-function ucsc_register_department_post_type() {
+function ucsc_register_department_post_type()
+{
 	$labels = array(
 		'name' => 'Departments',
 		'singular_name' => 'Department',
@@ -127,27 +87,30 @@ function ucsc_register_department_post_type() {
 		'show_ui' => true,
 		'show_in_menu' => true,
 		'query_var' => true,
-		'rewrite' => true,
+		'rewrite' => array(
+			'with_front' => false,
+		),
 		'capability_type' => 'post',
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book-alt',
 		'show_in_rest'       => true,
-  		'rest_base'          => 'departments-api',
-  		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','excerpt')
+		'rest_base'          => 'departments-api',
+		'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title', 'thumbnail', 'excerpt')
 	);
 
-	register_post_type( 'department', $args );
+	register_post_type('department', $args);
 }
-add_action( 'init', 'ucsc_register_department_post_type' );
+add_action('init', 'ucsc_register_department_post_type');
 
 /**
  * Register Degrees Post Type
  */
 
-function ucsc_register_degree_post_type() {
+function ucsc_register_degree_post_type()
+{
 	$labels = array(
 		'name' => 'Degrees',
 		'singular_name' => 'Degree',
@@ -170,27 +133,30 @@ function ucsc_register_degree_post_type() {
 		'show_ui' => true,
 		'show_in_menu' => true,
 		'query_var' => true,
-		'rewrite' => true,
+		'rewrite' => array(
+			'with_front' => false,
+		),
 		'capability_type' => 'post',
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book',
 		'show_in_rest'       => true,
-  		'rest_base'          => 'degrees-api',
-  		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','excerpt')
+		'rest_base'          => 'degrees-api',
+		'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title', 'thumbnail', 'excerpt')
 	);
 
-	register_post_type( 'degree', $args );
+	register_post_type('degree', $args);
 }
-add_action( 'init', 'ucsc_register_degree_post_type' );
+add_action('init', 'ucsc_register_degree_post_type');
 
 /**
  * Register Student Support Post Type
  */
 
-function ucsc_register_student_support_post_type() {
+function ucsc_register_student_support_post_type()
+{
 	$labels = array(
 		'name' => 'Student Support Resources',
 		'singular_name' => 'Student Support Resource',
@@ -213,27 +179,30 @@ function ucsc_register_student_support_post_type() {
 		'show_ui' => true,
 		'show_in_menu' => true,
 		'query_var' => true,
-		'rewrite' => true,
+		'rewrite' => array(
+			'with_front' => false,
+		),
 		'capability_type' => 'post',
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book',
 		'show_in_rest'       => true,
-  		'rest_base'          => 'student-support-resources-api',
-  		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','excerpt')
+		'rest_base'          => 'student-support-resources-api',
+		'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title', 'thumbnail', 'excerpt')
 	);
 
-	register_post_type( 'student-support', $args );
+	register_post_type('student-support', $args);
 }
-add_action( 'init', 'ucsc_register_student_support_post_type' );
+add_action('init', 'ucsc_register_student_support_post_type');
 
 /**
  * Register Student Opportunities Post Type
  */
 
-function ucsc_register_student_opportunities_post_type() {
+function ucsc_register_student_opportunities_post_type()
+{
 	$labels = array(
 		'name' => 'Student Opportunities',
 		'singular_name' => 'Student Opportunity',
@@ -263,20 +232,21 @@ function ucsc_register_student_opportunities_post_type() {
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book',
 		'show_in_rest'       => true,
-  		// 'rest_base'          => 'Student Support Resources-api',
-  		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','excerpt')
+		// 'rest_base'          => 'Student Support Resources-api',
+		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title', 'thumbnail', 'excerpt')
 	);
 
-	register_post_type( 'studentopportunities', $args );
+	register_post_type('studentopportunities', $args);
 }
-add_action( 'init', 'ucsc_register_student_opportunities_post_type' );
+add_action('init', 'ucsc_register_student_opportunities_post_type');
 
 /**
  * Register Institutes and Centers Post Type
  */
 
-function ucsc_register_institutes_centers_post_type() {
+function ucsc_register_institutes_centers_post_type()
+{
 	$labels = array(
 		'name' => 'Institutes and Centers',
 		'singular_name' => 'Institute or Center',
@@ -306,21 +276,22 @@ function ucsc_register_institutes_centers_post_type() {
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book',
 		'show_in_rest'       => true,
-  		// 'rest_base'          => 'Student Support Resources-api',
-  		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','excerpt')
+		// 'rest_base'          => 'Student Support Resources-api',
+		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title', 'thumbnail', 'excerpt')
 	);
 
-	register_post_type( 'institutes-centers', $args );
+	register_post_type('institutes-centers', $args);
 }
 
- add_action( 'init', 'ucsc_register_institutes_centers_post_type' );
+add_action('init', 'ucsc_register_institutes_centers_post_type');
 
 /**
  * Register Researcher and Faculty Labs Post Type
  */
 
-function ucsc_register_labs_post_type() {
+function ucsc_register_labs_post_type()
+{
 	$labels = array(
 		'name' => 'Researcher and Faculty Labs',
 		'singular_name' => 'Researcher or Faculty Lab',
@@ -350,11 +321,11 @@ function ucsc_register_labs_post_type() {
 		'menu_position' => null,
 		'menu_icon' => 'dashicons-book',
 		'show_in_rest' => true,
-  		// 'rest_base' => 'Student Support Resources-api',
-  		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title','thumbnail','excerpt')
+		// 'rest_base' => 'Student Support Resources-api',
+		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title', 'thumbnail', 'excerpt')
 	);
 
-	register_post_type( 'labs', $args );
+	register_post_type('labs', $args);
 }
-add_action( 'init', 'ucsc_register_labs_post_type' );
+add_action('init', 'ucsc_register_labs_post_type');
