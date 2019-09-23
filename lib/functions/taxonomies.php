@@ -333,46 +333,84 @@ function ucsc_research_expertise()
 add_action('init', 'ucsc_research_expertise');
 
 /**
- * Create a utility 'Featured' taxonomy
- * Attached to 'institutes-centers'  and 'labs' Custom Post Type
+ * Create a 'Support Science Category' taxonomy
+ * Attached to 'support-science' Custom Post Type
  * @since 1.0.0
  * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
  */
 
-// function ucsc_featured()
-// {
-// 	$labels = array(
-// 		'name' => 'Featured Posts',
-// 		'singular_name' => 'Featured Post',
-// 		'search_items' =>  'Search Featured Posts',
-// 		'all_items' => 'All Featured Posts',
-// 		'edit_item' => 'Edit Featured Posts',
-// 		'update_item' => 'Update Featured Posts',
-// 		'add_new_item' => 'Add Featured Post',
-// 		'new_item_name' => 'New Featured Post',
-// 		'menu_name' => 'Featured Posts'
-// 	);
+function ucsc_support_science_category()
+{
+	$labels = array(
+		'name' => 'Support Science Category',
+		'singular_name' => 'Support Science Category',
+		'search_items' =>  'Search Support Science Categories',
+		'all_items' => 'All Support Science Categories',
+		'edit_item' => 'Edit Support Science Categories',
+		'update_item' => 'Update Support Science Categories',
+		'add_new_item' => 'Add Support Science Category',
+		'new_item_name' => 'New Support Science Categories',
+		'menu_name' => 'Support Science Categories'
+	);
 
-// 	register_taxonomy(
-// 		'featured-tax',
-// 		array('post'),
-// 		array(
-// 			'hierarchical' => true,
-// 			'labels' => $labels,
-// 			'show_ui' => true,
-// 			'query_var' => true,
-// 			'rewrite' => array('slug' => 'featured-tax'),
-// 			'show_in_rest' => true, //Required for Gutenberg editor
-// 			'rest_base' => 'featured-tax-api',
-// 			'rest_controller_class' => 'WP_REST_Terms_Controller',
-// 		)
-// 	);
-// }
-// add_action('init', 'ucsc_featured');
+	register_taxonomy(
+		'support-science-cat',
+		array('support-science'),
+		array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array('slug' => 'support-science-cat'),
+			'show_in_rest' => true, //Required for Gutenberg editor
+			'rest_base' => 'featured-tax-api',
+			'rest_controller_class' => 'WP_REST_Terms_Controller',
+		)
+	);
+}
+add_action('init', 'ucsc_support_science_category');
+
+/**
+ * Create a 'Support Science Interest' taxonomy
+ * Attached to 'support-science' Custom Post Type
+ * @since 1.0.0
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+
+function ucsc_support_science_interest()
+{
+	$labels = array(
+		'name' => 'Support Science Interest',
+		'singular_name' => 'Support Science Interest',
+		'search_items' =>  'Search Support Science Interests',
+		'all_items' => 'All Support Science Interests',
+		'edit_item' => 'Edit Support Science Interests',
+		'update_item' => 'Update Support Science Interests',
+		'add_new_item' => 'Add Support Science Interest',
+		'new_item_name' => 'New Support Science Interest',
+		'menu_name' => 'Support Science by Interest'
+	);
+
+	register_taxonomy(
+		'support-science-int',
+		array('support-science'),
+		array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array('slug' => 'support-science-int'),
+			'show_in_rest' => true, //Required for Gutenberg editor
+			// 'rest_base' => 'featured-tax-api',
+			'rest_controller_class' => 'WP_REST_Terms_Controller',
+		)
+	);
+}
+add_action('init', 'ucsc_support_science_interest');
 
 /**
  * Prevent adding additional terms to Featured taxonomy
- * Attached to 'institutes-centers'  and 'labs' Custom Post Type
+ *
  * @since 1.0.0
  * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
  * see: https://wordpress.stackexchange.com/questions/112686/how-to-prevent-new-terms-being-added-to-a-custom-taxonomy

@@ -225,7 +225,9 @@ function ucsc_register_student_opportunities_post_type()
 		'show_ui' => true,
 		'show_in_menu' => true,
 		'query_var' => true,
-		'rewrite' => true,
+		'rewrite' => array(
+			'with_front' => false,
+		),
 		'capability_type' => 'post',
 		'has_archive' => true,
 		'hierarchical' => false,
@@ -269,7 +271,9 @@ function ucsc_register_institutes_centers_post_type()
 		'show_ui' => true,
 		'show_in_menu' => true,
 		'query_var' => true,
-		'rewrite' => true,
+		'rewrite' => array(
+			'with_front' => false,
+		),
 		'capability_type' => 'post',
 		'has_archive' => true,
 		'hierarchical' => false,
@@ -314,7 +318,9 @@ function ucsc_register_labs_post_type()
 		'show_ui' => true,
 		'show_in_menu' => true,
 		'query_var' => true,
-		'rewrite' => true,
+		'rewrite' => array(
+			'with_front' => false,
+		),
 		'capability_type' => 'post',
 		'has_archive' => true,
 		'hierarchical' => false,
@@ -329,3 +335,49 @@ function ucsc_register_labs_post_type()
 	register_post_type('labs', $args);
 }
 add_action('init', 'ucsc_register_labs_post_type');
+
+/**
+ * Register Support Science Post Type
+ */
+
+function ucsc_register_suppport_science_post_type()
+{
+	$labels = array(
+		'name' => 'Support Science',
+		'singular_name' => 'Support Science Org',
+		'add_new' => 'Add New Support Science Org',
+		'add_new_item' => 'Add New Support Science Org',
+		'edit_item' => 'Edit Support Science Org',
+		'new_item' => 'New Support Science Org',
+		'view_item' => 'View Support Science Org',
+		'search_items' => 'Search Support Science Orgs',
+		'not_found' =>  'No Support Science Org found',
+		'not_found_in_trash' => 'No Support Science Org found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'Support Science Organizations'
+	);
+
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'publicly_queryable' => true,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'query_var' => true,
+		'rewrite' => array(
+			'with_front' => false,
+		),
+		'capability_type' => 'post',
+		'has_archive' => true,
+		'hierarchical' => false,
+		'menu_position' => null,
+		'menu_icon' => 'dashicons-book',
+		'show_in_rest' => true,
+		// 'rest_base' => 'Student Support Resources-api',
+		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
+		'supports' => array('title', 'thumbnail', 'excerpt')
+	);
+
+	register_post_type('support-science', $args);
+}
+add_action('init', 'ucsc_register_suppport_science_post_type');
