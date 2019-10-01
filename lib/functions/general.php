@@ -143,6 +143,12 @@ add_action('template_redirect', 'ucsc_archive_to_page_redirect');
  * POST FORMATS
  * Add support for WordPress
  * Post Formats: Link Posts
+ *
+ */
+
+/**
+ * DEFAULT POST FORMAT
+ * Add support Link Posts
  */
 add_action('after_setup_theme', 'ucsc_pbsci_post_formats', 11);
 function ucsc_pbsci_post_formats()
@@ -163,3 +169,59 @@ function ucsc_pbsci_link_filter($link, $post)
     return $link;
 }
 add_filter('post_link', 'ucsc_pbsci_link_filter', 10, 2);
+
+/**
+ * POST FORMATS FOR CUSTOM POST TYPES
+ * Post formats for CPTs enabled in
+ * 'supports' array of post type register
+ * from: http://justintadlock.com/archives/2016/11/14/post-format-support-for-custom-post-types
+ */
+
+//Get allowed post format for cpt: Link
+
+function ucsc_pbsci_get_allowed_cpt_formats()
+{
+    return array('link');
+}
+
+// Limit post types admin screens
+add_action('load-post.php', 'ucsc_pbsci_post_format_support_filter');
+add_action('load-post-new.php', 'ucsc_pbsci_post_format_support_filter');
+add_action('load-edit.php', 'ucsc_pbsci_post_format_support_filter');
+
+function ucsc_pbsci_post_format_support_filter()
+{
+
+    $screen = get_current_screen();
+
+    // Bail if not on the labs screen.
+    if (empty($screen->post_type) || $screen->post_type !== 'student-support' || $screen->post_type !== 'studentopportunities' || $screen->post_type !== 'institutes-centers' || $screen->post_type !== 'labs' || $screen->post_type !== 'support-science')
+        return;
+
+    // Check if the current theme supports formats.
+    if (current_theme_supports('post-formats')) {
+
+        $formats = get_theme_support('post-formats');
+
+        // If we have formats, add theme support for only the allowed formats.
+        if (isset($formats[0])) {
+            $new_formats = array_intersect($formats[0], ucsc_pbsci_get_allowed_cpt_formats());
+
+            // Remove post formats support.
+            remove_theme_support('post-formats');
+
+            // If the theme supports the allowed formats, add support for them.
+            if ($new_formats)
+                add_theme_support('post-formats', $new_formats);
+        }
+    }
+
+    // Filter the default post format.
+    add_filter('option_default_post_format', 'ucsc_pbsci_default_post_format_filter', 95);
+}
+
+function ucsc_pbsci_default_post_format_filter($format)
+{
+
+    return in_array($format, ucsc_pbsci_get_allowed_project_formats()) ? $format : 'standard';
+}
