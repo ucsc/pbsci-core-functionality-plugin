@@ -1,4 +1,5 @@
 <?php
+
 /**
  * General
  *
@@ -26,19 +27,20 @@
  * @param string $url, request url
  * @return array request arguments
  */
-function bb_custom_functionality_hidden( $r, $url ) {
-	if ( 0 !== strpos( $url, 'http://api.wordpress.org/plugins/update-check' ) )
-		return $r; // Not a plugin update request. Bail immediately.
-	$plugins = unserialize( $r['body']['plugins'] );
-	unset( $plugins->plugins[ plugin_basename( __FILE__ ) ] );
-	unset( $plugins->active[ array_search( plugin_basename( __FILE__ ), $plugins->active ) ] );
-	$r['body']['plugins'] = serialize( $plugins );
-	return $r;
+function bb_custom_functionality_hidden($r, $url)
+{
+    if (0 !== strpos($url, 'http://api.wordpress.org/plugins/update-check'))
+        return $r; // Not a plugin update request. Bail immediately.
+    $plugins = unserialize($r['body']['plugins']);
+    unset($plugins->plugins[plugin_basename(__FILE__)]);
+    unset($plugins->active[array_search(plugin_basename(__FILE__), $plugins->active)]);
+    $r['body']['plugins'] = serialize($plugins);
+    return $r;
 }
-add_filter( 'http_request_args', 'bb_custom_functionality_hidden', 5, 2 );
+add_filter('http_request_args', 'bb_custom_functionality_hidden', 5, 2);
 
 // Enable shortcodes in widgets
-add_filter( 'widget_text', 'shortcode_unautop' );
+add_filter('widget_text', 'shortcode_unautop');
 add_filter('widget_text', 'do_shortcode');
 
 /**
@@ -46,11 +48,12 @@ add_filter('widget_text', 'do_shortcode');
  * @author Bill Erickson
  * @link http://www.billerickson.net/code/move-featured-image-metabox
  */
-add_action('do_meta_boxes', 'ucsc_underscore_slider_image_metabox' );
+add_action('do_meta_boxes', 'ucsc_underscore_slider_image_metabox');
 
-function ucsc_underscore_slider_image_metabox() {
- remove_meta_box( 'postimagediv', 'slide', 'side' );
- add_meta_box('postimagediv', __('Slide Image'), 'post_thumbnail_meta_box', 'slide', 'normal', 'high');
+function ucsc_underscore_slider_image_metabox()
+{
+    remove_meta_box('postimagediv', 'slide', 'side');
+    add_meta_box('postimagediv', __('Slide Image'), 'post_thumbnail_meta_box', 'slide', 'normal', 'high');
 }
 
 /**
@@ -58,10 +61,11 @@ function ucsc_underscore_slider_image_metabox() {
  * @author aderaaij
  * @link https://gist.github.com/aderaaij/6767503
  */
-function yoasttobottom() {
-	return 'low';
+function yoasttobottom()
+{
+    return 'low';
 }
-add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
+add_filter('wpseo_metabox_prio', 'yoasttobottom');
 
 /**
  * Bring Excerpt Metabox to below Title on Degree post type
@@ -74,10 +78,11 @@ add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
  *
  * @return null
  */
-function oz_remove_normal_excerpt() {
-    remove_meta_box( 'postexcerpt' , 'degree' , 'normal' );
+function oz_remove_normal_excerpt()
+{
+    remove_meta_box('postexcerpt', 'degree', 'normal');
 }
-add_action( 'admin_menu' , 'oz_remove_normal_excerpt' );
+add_action('admin_menu', 'oz_remove_normal_excerpt');
 
 /**
  * Add the excerpt meta box back in with a custom screen location
@@ -85,11 +90,12 @@ add_action( 'admin_menu' , 'oz_remove_normal_excerpt' );
  * @param  string $post_type
  * @return null
  */
-function oz_add_excerpt_meta_box( $post_type ) {
-    if ( in_array( $post_type, array( 'degree' ) ) ) {
+function oz_add_excerpt_meta_box($post_type)
+{
+    if (in_array($post_type, array('degree'))) {
         add_meta_box(
             'oz_postexcerpt',
-            __( 'Excerpt', 'ucsc-underscore' ),
+            __('Excerpt', 'ucsc-underscore'),
             'post_excerpt_meta_box',
             $post_type,
             'after_title',
@@ -97,7 +103,7 @@ function oz_add_excerpt_meta_box( $post_type ) {
         );
     }
 }
-add_action( 'add_meta_boxes', 'oz_add_excerpt_meta_box' );
+add_action('add_meta_boxes', 'oz_add_excerpt_meta_box');
 
 /**
  * You can't actually add meta boxes after the title by default in WP so
@@ -108,25 +114,52 @@ add_action( 'add_meta_boxes', 'oz_add_excerpt_meta_box' );
  *
  * @return null
  */
-function oz_run_after_title_meta_boxes() {
+function oz_run_after_title_meta_boxes()
+{
     global $post, $wp_meta_boxes;
     # Output the `below_title` meta boxes:
-    do_meta_boxes( get_current_screen(), 'after_title', $post );
+    do_meta_boxes(get_current_screen(), 'after_title', $post);
 }
-add_action( 'edit_form_after_title', 'oz_run_after_title_meta_boxes' );
+add_action('edit_form_after_title', 'oz_run_after_title_meta_boxes');
 
 /**
  * Redirect CPT archives to Pages
  *
  */
-function ucsc_archive_to_page_redirect() {
-    if( is_post_type_archive( 'degree' ) ) {
-        wp_redirect( home_url( '/academics/degrees/' ), 301 );
+function ucsc_archive_to_page_redirect()
+{
+    if (is_post_type_archive('degree')) {
+        wp_redirect(home_url('/academics/degrees/'), 301);
         exit();
-	}
-	if( is_post_type_archive( 'department' ) ) {
-        wp_redirect( home_url( '/academics/departments/' ), 301 );
+    }
+    if (is_post_type_archive('department')) {
+        wp_redirect(home_url('/academics/departments/'), 301);
         exit();
     }
 }
-add_action( 'template_redirect', 'ucsc_archive_to_page_redirect' );
+add_action('template_redirect', 'ucsc_archive_to_page_redirect');
+
+/**
+ * POST FORMATS
+ * Add support for WordPress
+ * Post Formats: Link Posts
+ */
+add_action('after_setup_theme', 'ucsc_pbsci_post_formats', 11);
+function ucsc_pbsci_post_formats()
+{
+    add_theme_support('post-formats', array('link'));
+}
+
+/*
+ *  Filter: link posts
+ *  Set link post permalinks to the external URL
+ *  go to filter post title for tumblr-style links
+ */
+function ucsc_pbsci_link_filter($link, $post)
+{
+    if (has_post_format('link', $post) && get_post_field('post_content', $post->ID, 'display')) {
+        $link = get_post_field('post_content', $post->ID, 'display');
+    }
+    return $link;
+}
+add_filter('post_link', 'ucsc_pbsci_link_filter', 10, 2);
