@@ -1,7 +1,6 @@
-#menu-posts-department {
+li[id^='menu-posts-'] {
     .dashicons-before {
         &:before {
-            content: '\f559';
             font-family: "Font Awesome 5 Free" !important;
             font-weight: 900;
             -moz-osx-font-smoothing: grayscale;
@@ -11,6 +10,38 @@
             font-variant: normal;
             text-rendering: auto;
             line-height: 1
+        }
+    }
+}
+
+#menu-posts-degree {
+    .dashicons-before {
+        &:before {
+            content: '\f19d';
+        }
+    }
+}
+
+#menu-posts-department {
+    .dashicons-before {
+        &:before {
+            content: '\f1ad';
+        }
+    }
+}
+
+#menu-posts-studentopportunities {
+    .dashicons-before {
+        &:before {
+            content: '\f500';
+        }
+    }
+}
+
+#menu-posts-student-support {
+    .dashicons-before {
+        &:before {
+            content: '\f1cd';
         }
     }
 }
