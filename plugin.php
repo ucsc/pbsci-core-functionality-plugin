@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: UCSC Custom Functionality
- * Plugin URI: https://github.com/Herm71/blackbird-core-functionality-plugin.git
+ * Plugin Name: UCSC Science/PBSci Custom Functionality
+ * Plugin URI: https://github.com/ucsc/pbsci-core-functionality-plugin
  * Description: Contains custom functionality. Theme independent.
- * Version: 1.1.0
- * Author: UC Santa Cruz Communications & Marketing
- * Author URI: https://communications.ucsc.edu/
+ * Version: 1.1.2
+ * Author: Jason Chafin, Senior Developer, UC Santa Cruz Communications & Marketing
+ * Author URI: https://github.com/Herm71
  * License: GPL2
  *
  * This program is free software; you can redistribute it and/or modify it under the terms of the GNU
