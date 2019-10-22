@@ -89,12 +89,13 @@ function ucsc_register_department_post_type()
 		'query_var' => true,
 		'rewrite' => array(
 			'with_front' => false,
+			'slug' => 'department',
 		),
 		'capability_type' => 'post',
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
-		'menu_icon' => 'dashicons-book-alt',
+		'menu_icon' => '',
 		'show_in_rest'       => true,
 		'rest_base'          => 'departments-api',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
@@ -140,7 +141,7 @@ function ucsc_register_degree_post_type()
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
-		'menu_icon' => 'dashicons-book',
+		'menu_icon' => '',
 		'show_in_rest'       => true,
 		'rest_base'          => 'degrees-api',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
@@ -186,7 +187,7 @@ function ucsc_register_student_support_post_type()
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
-		'menu_icon' => 'dashicons-book',
+		'menu_icon' => '',
 		'show_in_rest'       => true,
 		'rest_base'          => 'student-support-resources-api',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
@@ -232,7 +233,7 @@ function ucsc_register_student_opportunities_post_type()
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
-		'menu_icon' => 'dashicons-book',
+		'menu_icon' => '',
 		'show_in_rest'       => true,
 		// 'rest_base'          => 'Student Support Resources-api',
 		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
@@ -278,7 +279,7 @@ function ucsc_register_institutes_centers_post_type()
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
-		'menu_icon' => 'dashicons-book',
+		'menu_icon' => '',
 		'show_in_rest'       => true,
 		// 'rest_base'          => 'Student Support Resources-api',
 		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
@@ -325,7 +326,7 @@ function ucsc_register_labs_post_type()
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
-		'menu_icon' => 'dashicons-book',
+		'menu_icon' => '',
 		'show_in_rest' => true,
 		// 'rest_base' => 'Student Support Resources-api',
 		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
@@ -371,7 +372,7 @@ function ucsc_register_suppport_science_post_type()
 		'has_archive' => true,
 		'hierarchical' => false,
 		'menu_position' => null,
-		'menu_icon' => 'dashicons-book',
+		'menu_icon' => '',
 		'show_in_rest' => true,
 		// 'rest_base' => 'Student Support Resources-api',
 		// 'rest_controller_class' => 'WP_REST_Posts_Controller',
@@ -381,3 +382,28 @@ function ucsc_register_suppport_science_post_type()
 	register_post_type('support-science', $args);
 }
 add_action('init', 'ucsc_register_suppport_science_post_type');
+
+
+/**
+ * Flush permalink rewrite on activation
+ *
+ * @return void
+ * Flushes permalinks and rewrites them upon plugin activation
+ * @package
+ * @since
+ * @author Jason Chafin
+ * @link http://www.blackbirdconsult.com
+ * @license GNU General Public License 2.0+
+ */
+function ucsc_pbsci_rewrite_flush() {
+    // First, we "add" the custom post type via the above written function.
+    // Note: "add" is written with quotes, as CPTs don't get added to the DB,
+    // They are only referenced in the post_type column with a post entry, 
+    // when you add a post of this CPT.
+    ucsc_register_department_post_type();
+
+    // ATTENTION: This is *only* done during plugin activation hook in this example!
+    // You should *NEVER EVER* do this on every page load!!
+    flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'ucsc_pbsci_rewrite_flush' );

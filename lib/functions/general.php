@@ -39,6 +39,17 @@ function bb_custom_functionality_hidden($r, $url)
 }
 add_filter('http_request_args', 'bb_custom_functionality_hidden', 5, 2);
 
+/**
+ * Enqueue custom Admin CSS
+ */
+
+function ucsc_load_custom_wp_admin_style(){
+    wp_register_style( 'ucsc-custom-wp-admin-style', UCSC_PLUG_URL . 'lib/styles/admin-style.css', false, '1.0.0' );
+    wp_enqueue_style( 'ucsc-custom-wp-admin-style' );
+    wp_enqueue_style('fontawesome-admin', 'https://use.fontawesome.com/releases/v5.8.1/css/all.css', '', '5.8.1', 'all'); 
+}
+add_action('admin_enqueue_scripts', 'ucsc_load_custom_wp_admin_style');
+
 // Enable shortcodes in widgets
 add_filter('widget_text', 'shortcode_unautop');
 add_filter('widget_text', 'do_shortcode');
@@ -138,6 +149,15 @@ function ucsc_archive_to_page_redirect()
     }
 }
 add_action('template_redirect', 'ucsc_archive_to_page_redirect');
+
+/**
+ * Custom Rewrite Rules for Custom Post Types
+ *
+ * Some custom post types defined in this plugin need to have their slug redirected
+ * So we don't mess up any 
+ */
+
+ //No rules yet
 
 /**
  * POST FORMATS

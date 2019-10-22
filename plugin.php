@@ -19,6 +19,7 @@
 
 // Plugin Directory
 define( 'UCSC_DIR', dirname( __FILE__ ) );
+define('UCSC_PLUG_URL', plugin_dir_url(__FILE__));
 
 //Include Customization files:
 

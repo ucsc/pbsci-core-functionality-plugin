@@ -1,0 +1,37 @@
+{
+    "name": "pbsci-core-functionality",
+    "version": "1.0.0",
+    "description": "UC Santa Cruz PBSci/Science Custom WordPress Functionality plugin",
+    "repository": {
+        "type": "git",
+        "url": "git+https:https://github.com/ucsc/pbsci-core-functionality-plugin"
+    },
+    "author": "UC Santa Cruz Communications & Marketing",
+    "license": "GPL-2",
+    "bugs": {
+        "url": "https://github.com/ucsc/pbsci-core-functionality-plugin/issues"
+    },
+    "homepage": "https://github.com/ucsc/pbsci-core-functionality-plugin#readme",
+    "devDependencies": {
+        "autoprefixer": "^9.6.1",
+        "bourbon": "^6.0.0",
+        "bourbon-neat": "^4.0.0",
+        "css-mqpacker": "^7.0.0",
+        "cssnano": "^4.1.10",
+        "flexbox-grid-mixins": "^0.1.6",
+        "gulp": "^4.0.2",
+        "gulp-livereload": "^4.0.1",
+        "gulp-notify": "^3.2.0",
+        "gulp-plumber": "^1.2.1",
+        "gulp-postcss": "^8.0.0",
+        "gulp-rename": "^1.4.0",
+        "gulp-sass": "4.0.2",
+        "gulp-sass-lint": "^1.4.0",
+        "gulp-sourcemaps": "^2.6.5",
+        "sass-rem": "^2.0.1"
+    },
+    "browserslist": [
+        "last 1 version",
+        "> 1%"
+    ]
+}
