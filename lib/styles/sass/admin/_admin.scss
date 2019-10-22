@@ -30,10 +30,18 @@ li[id^='menu-posts-'] {
     }
 }
 
+#menu-posts-institutes-centers {
+    .dashicons-before {
+        &:before {
+            content: '\f0e8';
+        }
+    }
+}
+
 #menu-posts-studentopportunities {
     .dashicons-before {
         &:before {
-            content: '\f500';
+            content: '\f002';
         }
     }
 }
@@ -42,6 +50,22 @@ li[id^='menu-posts-'] {
     .dashicons-before {
         &:before {
             content: '\f1cd';
+        }
+    }
+}
+
+#menu-posts-labs {
+    .dashicons-before {
+        &:before {
+            content: '\f500';
+        }
+    }
+}
+
+#menu-posts-support-science {
+    .dashicons-before {
+        &:before {
+            content: '\f688';
         }
     }
 }
