@@ -247,7 +247,7 @@ function ucsc_register_student_opportunities_post_type()
 		'show_in_rest'       => true,
 		'rest_base'          => 'research-opportunities-api',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title', 'thumbnail', 'excerpt')
+		'supports' => array('title', 'thumbnail', 'excerpt', 'editor')
 	);
 
 	register_post_type('studentopportunities', $args);
