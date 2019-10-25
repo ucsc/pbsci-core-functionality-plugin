@@ -196,7 +196,7 @@ function ucsc_register_student_support_post_type()
 		'show_in_rest'       => true,
 		'rest_base'          => 'academic-support-api',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title', 'thumbnail', 'excerpt')
+		'supports' => array('title', 'thumbnail', 'excerpt', 'editor')
 	);
 
 	register_post_type('student-support', $args);
@@ -247,7 +247,7 @@ function ucsc_register_student_opportunities_post_type()
 		'show_in_rest'       => true,
 		'rest_base'          => 'research-opportunities-api',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title', 'thumbnail', 'excerpt')
+		'supports' => array('title', 'thumbnail', 'excerpt', 'editor')
 	);
 
 	register_post_type('studentopportunities', $args);
@@ -298,7 +298,7 @@ function ucsc_register_institutes_centers_post_type()
 		'show_in_rest'       => true,
 		'rest_base'          => 'groups-facilities-api',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title', 'thumbnail', 'excerpt')
+		'supports' => array('title', 'thumbnail', 'excerpt', 'editor')
 	);
 
 	register_post_type('institutes-centers', $args);
@@ -350,7 +350,7 @@ function ucsc_register_labs_post_type()
 		'show_in_rest' => true,
 		'rest_base' => 'people-api',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title', 'thumbnail', 'excerpt')
+		'supports' => array('title', 'thumbnail', 'excerpt', 'editor')
 	);
 
 	register_post_type('labs', $args);
@@ -402,7 +402,7 @@ function ucsc_register_suppport_science_post_type()
 		'show_in_rest' => true,
 		'rest_base' => 'support-funds-api',
 		'rest_controller_class' => 'WP_REST_Posts_Controller',
-		'supports' => array('title', 'thumbnail', 'excerpt')
+		'supports' => array('title', 'thumbnail', 'excerpt', 'editor')
 	);
 
 	register_post_type('support-science', $args);
