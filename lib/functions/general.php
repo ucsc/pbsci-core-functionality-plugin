@@ -147,6 +147,23 @@ function ucsc_archive_to_page_redirect()
         wp_redirect(home_url('/academics/departments/'), 301);
         exit();
     }
+    if (is_post_type_archive('studentopportunities')) {
+        wp_redirect(home_url('/research/student-research-opportunities/'), 301);
+        exit();
+    }
+    if (is_post_type_archive('student-support')) {
+        wp_redirect(home_url('/academic/student-support/'), 301);
+        exit();
+    }
+    if (is_post_type_archive('institutes-centers')) {
+        wp_redirect(home_url('/research/research-groups-facilities/'), 301);
+        exit();
+    }
+    if (is_post_type_archive('labs')) {
+        wp_redirect(home_url('/research/faculty-researchers/'), 301);
+        exit();
+    }
+    
 }
 add_action('template_redirect', 'ucsc_archive_to_page_redirect');
 

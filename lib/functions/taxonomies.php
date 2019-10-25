@@ -102,17 +102,17 @@ add_action('init', 'ucsc_register_researcher_faculty_labs_taxonomy');
 function ucsc_register_student_opportunities_taxonomy()
 {
 	$labels = array(
-		'name' => 'Student Opportunities Category',
-		'singular_name' => 'Student Opportunity Category',
-		'search_items' =>  'Search Student Opportunities Categories',
-		'all_items' => 'All Student Opportunities Categories',
-		'parent_item' => 'Parent Student Opportunity Category',
-		'parent_item_colon' => 'Parent Student Opportunity Category:',
-		'edit_item' => 'Edit Student Opportunity Category',
-		'update_item' => 'Update Student Opportunity Category',
-		'add_new_item' => 'Add Student Opportunity Category',
-		'new_item_name' => 'New Student Opportunity Category',
-		'menu_name' => 'Opportunity Categories'
+		'name' => 'Research Opportunities Category',
+		'singular_name' => 'Research Opportunity Category',
+		'search_items' =>  'Search Research Opportunities Categories',
+		'all_items' => 'All Research Opportunities Categories',
+		'parent_item' => 'Parent Research Opportunity Category',
+		'parent_item_colon' => 'Parent Research Opportunity Category:',
+		'edit_item' => 'Edit Research Opportunity Category',
+		'update_item' => 'Update Research Opportunity Category',
+		'add_new_item' => 'Add Research Opportunity Category',
+		'new_item_name' => 'New Research Opportunity Category',
+		'menu_name' => 'Research Opportunity Categories'
 	);
 
 	register_taxonomy(
@@ -142,17 +142,17 @@ add_action('init', 'ucsc_register_student_opportunities_taxonomy');
 function ucsc_register_student_support_taxonomy()
 {
 	$labels = array(
-		'name' => 'Student Support',
-		'singular_name' => 'Student Support Item',
-		'search_items' =>  'Search Student Support Items',
-		'all_items' => 'All Student Support Items',
-		'parent_item' => 'Parent Student Support Item',
-		'parent_item_colon' => 'Parent Student Support Item:',
-		'edit_item' => 'Edit Student Support Item',
-		'update_item' => 'Update Student Support Item',
-		'add_new_item' => 'Add Student Support Item',
-		'new_item_name' => 'New Student Support Item',
-		'menu_name' => 'Student Support Categories'
+		'name' => 'Academic Support Type',
+		'singular_name' => 'Academic Support Item',
+		'search_items' =>  'Search Academic Support Items',
+		'all_items' => 'All Academic Support Items',
+		'parent_item' => 'Parent Academic Support Item',
+		'parent_item_colon' => 'Parent Academic Support Item:',
+		'edit_item' => 'Edit Academic Support Item',
+		'update_item' => 'Update Academic Support Item',
+		'add_new_item' => 'Add Academic Support Item',
+		'new_item_name' => 'New Academic Support Item',
+		'menu_name' => 'Academic Support Types'
 	);
 
 	register_taxonomy(
@@ -163,9 +163,9 @@ function ucsc_register_student_support_taxonomy()
 			'labels' => $labels,
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array('slug' => 'student-support-tax'),
+			'rewrite' => array('slug' => 'academic-support-tax'),
 			'show_in_rest' => true, //Required for Gutenberg editor
-			'rest_base' => 'student-support-tax-api',
+			'rest_base' => 'academic-support-tax-api',
 			'rest_controller_class' => 'WP_REST_Terms_Controller',
 		)
 	);
@@ -182,17 +182,17 @@ add_action('init', 'ucsc_register_student_support_taxonomy');
 function ucsc_register_student_opportunities_eligibility()
 {
 	$labels = array(
-		'name' => 'Student Eligibility',
-		'singular_name' => 'Student Eligibility Item',
+		'name' => 'Academic Support Eligibility',
+		'singular_name' => 'Academic Support Eligibility Item',
 		'search_items' =>  'Search Eligibility Items',
-		'all_items' => 'All Student Eligibility Items',
-		'parent_item' => 'Parent Student Eligibility Item',
-		'parent_item_colon' => 'Parent Student Eligibility Item:',
-		'edit_item' => 'Edit Student Eligibility Item',
-		'update_item' => 'Update Student Eligibility Item',
-		'add_new_item' => 'Add Student Eligibility Item',
-		'new_item_name' => 'New Student Eligibility Item',
-		'menu_name' => 'Opportunity Eligibility'
+		'all_items' => 'All Academic Support Eligibility Items',
+		'parent_item' => 'Parent Academic Support Eligibility Item',
+		'parent_item_colon' => 'Parent Academic Support Eligibility Item:',
+		'edit_item' => 'Edit Academic Support Eligibility Item',
+		'update_item' => 'Update Academic Support Eligibility Item',
+		'add_new_item' => 'Add Academic Support Eligibility Item',
+		'new_item_name' => 'New Academic Support Eligibility Item',
+		'menu_name' => 'Academic Support Eligibility'
 	);
 
 	register_taxonomy(
@@ -203,9 +203,9 @@ function ucsc_register_student_opportunities_eligibility()
 			'labels' => $labels,
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array('slug' => 'student-opp-eligib-tax'),
+			'rewrite' => array('slug' => 'academic-support-eligib-tax'),
 			'show_in_rest' => true, //Required for Gutenberg editor
-			'rest_base' => 'student-opportunity-eligibility-tax-api',
+			'rest_base' => 'academic-support-eligib-tax-api',
 			'rest_controller_class' => 'WP_REST_Terms_Controller',
 		)
 	);
@@ -222,17 +222,17 @@ add_action('init', 'ucsc_register_student_opportunities_eligibility');
 function ucsc_register_student_opportunities_availability()
 {
 	$labels = array(
-		'name' => 'Opportunity Availability',
-		'singular_name' => 'Opportunity Availability Item',
+		'name' => 'Academic Support Availability',
+		'singular_name' => 'Academic Support Availability Item',
 		'search_items' =>  'Search Availability Items',
-		'all_items' => 'All Opportunity Availability Items',
-		'parent_item' => 'Parent Opportunity Availability Item',
-		'parent_item_colon' => 'Parent Opportunity Availability Item:',
-		'edit_item' => 'Edit Opportunity Availability Item',
-		'update_item' => 'Update Opportunity Availability Item',
-		'add_new_item' => 'Add Opportunity Availability Item',
-		'new_item_name' => 'New Opportunity Availability Item',
-		'menu_name' => 'Opportunity Availability'
+		'all_items' => 'All Academic Support Availability Items',
+		'parent_item' => 'Parent Academic Support Availability Item',
+		'parent_item_colon' => 'Parent Academic Support Availability Item:',
+		'edit_item' => 'Edit Academic Support Availability Item',
+		'update_item' => 'Update Academic Support Availability Item',
+		'add_new_item' => 'Add Academic Support Availability Item',
+		'new_item_name' => 'New Academic Support Availability Item',
+		'menu_name' => 'Academic Support Availability'
 	);
 
 	register_taxonomy(
@@ -243,9 +243,9 @@ function ucsc_register_student_opportunities_availability()
 			'labels' => $labels,
 			'show_ui' => true,
 			'query_var' => true,
-			'rewrite' => array('slug' => 'student-opp-avail-tax'),
+			'rewrite' => array('slug' => 'academic-support-avail-tax'),
 			'show_in_rest' => true, //Required for Gutenberg editor
-			'rest_base' => 'student-opportunity-availability-tax-api',
+			'rest_base' => 'academic-support-avail-tax-api',
 			'rest_controller_class' => 'WP_REST_Terms_Controller',
 		)
 	);
