@@ -32,11 +32,5 @@ require_once( UCSC_DIR . '/lib/functions/taxonomies.php' );
 // Shortcodes
 require_once( UCSC_DIR . '/lib/functions/shortcodes.php' );
 
-// Sidebars
-//require_once( UCSC_DIR . '/lib/functions/sidebars.php' );
-
-// Widgets
-require_once( UCSC_DIR . '/lib/functions/widgets.php' );
-
 // General
 require_once( UCSC_DIR . '/lib/functions/general.php' );
