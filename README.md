@@ -2,7 +2,7 @@
 
 [WordPress](https://github.com/wordpress/) plugin for [UC Santa,Cruz Science](https://science.ucsc.edu/).
 
-This plugin contains the site's core functionality. Any custom post-types, taxonomies, or shrotcodes are defined in here rather than the theme.  It is _theme independent_. If the current theme is changed at a future date, this plugin will ensure the any custom functionality remains. 
+This plugin contains the site's core functionality. Any custom post-types, taxonomies, or shrotcodes are defined in here rather than the theme, making it _theme independent_. If the current theme is changed at a future date, this plugin will ensure the any custom functionality remains. 
 
 This plugin contains the following library structure; however, it can be expanded greatly:
 
