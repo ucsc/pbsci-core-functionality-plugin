@@ -209,3 +209,124 @@ function ucsc_pbsci_link_filter($link, $post)
     return $link;
 }
 add_filter('post_link', 'ucsc_pbsci_link_filter', 10, 2);
+
+/**
+ * Search for CTAs with visibility options that match the current WP route.
+ * 
+ * @return array
+ */ 
+function ucsc_cta_get_visible_ctas() {
+    // Simple caching mechanism so this function can be run multiple times
+    // without adding load.
+    static $ctas = [];
+
+    if ( !empty( $ctas ) ) {
+        return $ctas;
+    }
+
+    // Search for CTAs visible to the current route.
+    if ( is_singular() || is_archive() || is_search() ) {
+        $id = get_the_ID();
+        $post_type = get_post_type();
+
+        $query = new WP_Query( [
+            'post_type' => 'cta',
+            'ignore_sticky_posts' => true,
+            'meta_query' => [
+                'relation' => 'AND',
+                [
+                    'key' => 'cta_fields_cta_switch',
+                    'value' => '1',
+                ],
+                [
+                    'relation' => 'OR',
+                    [
+                        'key' => 'cta_visibility_post_type',
+                        'value' => $post_type,
+                        'compare' => 'LIKE',
+                    ],
+                    [
+                        'key' => 'cta_visibility_page',
+                        'value' => "\"{$id}\"",
+                        'compare' => 'LIKE',
+                    ],
+                    [
+                        'key' => 'cta_visibility_global',
+                        'value' => 1,
+                    ],
+                ]
+            ]
+        ] );
+        
+        if ( $query->have_posts() ) {
+            while ( $query->have_posts() ) {
+                $query->the_post();
+                $ctas[ get_the_ID() ] = get_post();
+            }
+            wp_reset_query();
+        }
+    }
+
+    return $ctas;
+}
+add_action( 'wp', 'ucsc_cta_get_visible_ctas' );
+
+/**
+ * Utility function to get a list of all published departments, grouped by
+ * their unit-category.
+ * 
+ * @return array
+ */
+function ucsc_get_departments_by_category() {
+    $departments = [];
+
+    $posts = get_posts( [
+        'post_type' => 'department',
+        'posts_per_page' => -1,
+        'orderby' => 'title',
+        'order' => 'ASC',
+        'ignore_sticky_posts' => true,
+    ] );
+
+    foreach ($posts as $post) {
+        $post_terms = get_the_terms( $post, 'unit-category' );
+
+        if ( !empty($post_terms) ) {
+            $post->unit_category = $post_terms[0];
+            $departments[ $post_terms[0]->name ][] = $post;
+        }
+    }
+
+    return $departments;
+}
+
+/**
+ * Get a set of arrays for all taxonomy term objects for a given set of post ids.
+ * 
+ * @return array
+ */
+function ucsc_get_all_terms_for_posts( $post_ids ) {
+    if ( !is_array( $post_ids ) ) {
+        $post_ids = [ $post_ids ];
+    }
+
+    // Sanitize here because we can't use prepare replacements for an IN() query.
+    array_walk( $post_ids, 'absint' );
+    $post_ids_string = implode( ',', $post_ids );
+
+    global $wpdb;
+    $sql = "SELECT r.object_id, t.name, t.slug, t.term_id, tt.taxonomy
+            FROM {$wpdb->term_relationships} as r
+            LEFT JOIN {$wpdb->term_taxonomy} as tt on tt.term_taxonomy_id = r.term_taxonomy_id
+            LEFT JOIN {$wpdb->terms} as t on t.term_id = tt.term_id
+            WHERE r.object_id IN ({$post_ids_string})
+            ";
+    $results = $wpdb->get_results( $sql );
+
+    $grouped = [];
+    foreach ( $results as $result ) {
+        $grouped[ $result->object_id ][] = $result;
+    }
+
+    return $grouped;
+}
