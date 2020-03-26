@@ -409,6 +409,52 @@ function ucsc_register_suppport_science_post_type()
 }
 add_action('init', 'ucsc_register_suppport_science_post_type');
 
+/**
+ * Register CTA Post Type
+ * 
+ * @link https://codex.wordpress.org/Function_Reference/register_post_type
+ */
+function ucsc_register_cta_post_type()
+{
+	$labels = array(
+		'name' => 'CTA',
+		'singular_name' => 'CTA',
+		'add_new' => 'Add New CTA',
+		'add_new_item' => 'Add New CTA',
+		'edit_item' => 'Edit CTA',
+		'new_item' => 'New CTA',
+		'view_item' => 'View CTA',
+		'search_items' => 'Search CTAs',
+		'not_found' =>  'No CTA found',
+		'not_found_in_trash' => 'No CTA found in trash',
+		'parent_item_colon' => '',
+		'menu_name' => 'CTAs'
+	);
+
+	$args = array(
+		'labels' => $labels,
+		'public' => true,
+		'exclude_from_search' => true,
+		'publicly_queryable' => false,
+		'show_ui' => true,
+		'show_in_menu' => true,
+		'query_var' => true,
+		'rewrite' => array(
+			'with_front' => false,
+			'slug' => 'cta',
+		),
+		'capability_type' => 'page',
+		'has_archive' => false,
+		'hierarchical' => false,
+		'menu_position' => null,
+		//'menu_icon' => 'megaphone',
+		'show_in_rest' => false,
+		'supports' => array('title')
+	);
+
+	register_post_type('cta', $args);
+}
+add_action('init', 'ucsc_register_cta_post_type');
 
 /**
  * Flush permalink rewrite on activation

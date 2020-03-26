@@ -409,6 +409,40 @@ function ucsc_support_science_interest()
 add_action('init', 'ucsc_support_science_interest');
 
 /**
+ * Create a 'Unit Category' taxonomy
+ * Attached to 'department' Custom Post Type
+ * @since 1.2.0
+ * @link http://codex.wordpress.org/Function_Reference/register_taxonomy
+ */
+function ucsc_unit_category()
+{
+	$labels = array(
+		'name' => 'Unit Categories',
+		'singular_name' => 'Unit Category',
+		'search_items' =>  'Search Unit Categories',
+		'all_items' => 'All Unit Categories',
+		'edit_item' => 'Edit Unit Category',
+		'update_item' => 'Update Unit Category',
+		'add_new_item' => 'Add Unit Category',
+		'new_item_name' => 'New Unit Category',
+		'menu_name' => 'Unit Categories'
+	);
+
+	register_taxonomy(
+		'unit-category',
+		array('department'),
+		array(
+			'hierarchical' => true,
+			'labels' => $labels,
+			'show_ui' => true,
+			'query_var' => true,
+			'rewrite' => array('slug' => 'unit'),
+		)
+	);
+}
+add_action('init', 'ucsc_unit_category');
+
+/**
  * Prevent adding additional terms to Featured taxonomy
  *
  * @since 1.0.0
