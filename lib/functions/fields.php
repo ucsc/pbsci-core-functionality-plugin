@@ -73,50 +73,33 @@ add_filter('acf/load_field/name=filter_field', 'ucsc_choices_fields_as_field_opt
 
 /**
  * Helper function get all ACF fields that offer choices.
- * 
- * @param array $field_names | ACF field names.
+ *
  * @return array
  */
-function ucsc_acf_get_choices_fields( $field_names = [] ) {
-	global $wpdb;
-
-	$sql = "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'acf-field' AND post_content LIKE '%\"choices\"%'";
-	
-	// Field names are stored as post_excerpt.
-	if ( !empty( $field_names ) ) {
-		if ( !is_array( $field_names ) ) {
-			$field_names = [ $field_names ];
-		}
-		$field_names = esc_sql( $field_names );
-		$sql .= " AND post_excerpt IN ('" . implode("','", $field_names) . "')";
-	}
-
-	$field_ids = $wpdb->get_col( $sql, 0 );
-
-	if ( empty( $field_ids ) ) {
-		return [];
-	}
-	
+function ucsc_acf_get_choices_fields() {
 	$choices_fields = [];
 	$posts = get_posts( [
 		'posts_per_page' => -1,
 		'post_type' => 'acf-field',
-		'orderby' => 'post_title',
+		'orderby' => 'title',
 		'order'	=> 'ASC',
 		'suppress_filters' => true, // DO NOT allow WPML to modify the query
 		'cache_results'	=> true,
 		'update_post_meta_cache' => false,
 		'update_post_term_cache' => false,
 		'ignore_sticky_posts' => true,
-		'post__in' => $field_ids,
 	] );
 
 	foreach ($posts as $post) {
+		$config = maybe_unserialize( $post->post_content );
+		if ( !isset( $config['choices'] ) ) {
+			continue;
+		}
 		$choices_fields[ $post->post_excerpt ] = [
 			'ID' => $post->ID,
 			'name' => $post->post_excerpt,
 			'label' => $post->post_title,
-			'choices' => maybe_unserialize( $post->post_content )['choices'],
+			'choices' => $config['choices'],
 		];
 	}
 
