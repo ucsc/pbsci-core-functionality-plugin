@@ -301,31 +301,41 @@ function ucsc_get_departments_by_category() {
 }
 
 /**
+ * Get all taxonomies shown in the UI.
+ *
+ * @param string $output
+ *
+ * @return string[]|\WP_Taxonomy[]
+ */
+function ucsc_get_all_taxonomies( $output = 'objects') {
+	$taxonomies = get_taxonomies( [
+		'show_ui' => true,
+		'_builtin' => false,
+	], $output );
+	$taxonomies += get_taxonomies( [
+		'show_ui' => true,
+		'_builtin' => true,
+	], $output );
+
+	return $taxonomies;
+}
+
+/**
  * Get a set of arrays for all taxonomy term objects for a given set of post ids.
- * 
+ *
+ * @param array $post_ids
+ *
  * @return array
  */
 function ucsc_get_all_terms_for_posts( $post_ids ) {
     if ( !is_array( $post_ids ) ) {
         $post_ids = [ $post_ids ];
     }
-
-    // Sanitize here because we can't use prepare replacements for an IN() query.
-    array_walk( $post_ids, 'absint' );
-    $post_ids_string = implode( ',', $post_ids );
-
-    global $wpdb;
-    $sql = "SELECT r.object_id, t.name, t.slug, t.term_id, tt.taxonomy
-            FROM {$wpdb->term_relationships} as r
-            LEFT JOIN {$wpdb->term_taxonomy} as tt on tt.term_taxonomy_id = r.term_taxonomy_id
-            LEFT JOIN {$wpdb->terms} as t on t.term_id = tt.term_id
-            WHERE r.object_id IN ({$post_ids_string})
-            ";
-    $results = $wpdb->get_results( $sql );
-
-    $grouped = [];
-    foreach ( $results as $result ) {
-        $grouped[ $result->object_id ][] = $result;
+    sort($post_ids);
+	$taxonomies = ucsc_get_all_taxonomies( 'names' );
+	$grouped = [];
+    foreach ($post_ids as $post_id) {
+	    $grouped[ $post_id ] = wp_get_post_terms( $post_id, $taxonomies );
     }
 
     return $grouped;
